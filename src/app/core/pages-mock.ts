@@ -1,5 +1,6 @@
 export const PAGES = [
 	{
-		name: 'Homepage'
+		name: 'Homepage',
+		slug: 'homepage'
 	}
 ];

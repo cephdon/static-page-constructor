@@ -7,21 +7,13 @@
 			<div class="card-body">
 				<ul class="nav flex-column">
 					<li class="nav-item" *ngFor="let page of pages">
-						<a class="nav-link" href="">{{ page.name }}</a>
+						<a class="nav-link" [routerLink]="['page-edit', page.slug]" routerLinkActive="active">{{ page.name }}</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="col-8">
-	</div>
-	<div class="col-2">
-		<div class="card">
-			<div class="card-header">
-				Properties
-			</div>
-			<div class="card-body">
-			</div>
-		</div>
+	<div class="col-10">
+		<router-outlet></router-outlet>
 	</div>
 </div>
