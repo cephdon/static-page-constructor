@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutModule } from './layout/layout.module';
 import { PageConstructorModule } from './page-constructor/page-constructor.module';
+import { CoreModule } from './core/core.module';
 
 import { LayoutComponent } from './layout/layout.component';
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     LayoutModule,
+    CoreModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
