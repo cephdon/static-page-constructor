@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SlimLoadingBarModule, SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
+import { SortablejsModule } from 'angular-sortablejs';
+
 import { SPCInterceptor } from './intercept';
 
 @NgModule({
@@ -21,6 +23,7 @@ import { SPCInterceptor } from './intercept';
 		ReactiveFormsModule,
 		SlimLoadingBarModule.forRoot(),
 		HttpClientModule,
+		SortablejsModule,
 	],
 	declarations: [],
 	exports: [
@@ -30,6 +33,7 @@ import { SPCInterceptor } from './intercept';
 		ReactiveFormsModule,
 		SlimLoadingBarModule,
 		HttpClientModule,
+		SortablejsModule,
 	],
 	providers: [
 		{

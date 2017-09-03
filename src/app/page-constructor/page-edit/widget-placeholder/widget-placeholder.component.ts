@@ -20,6 +20,8 @@ export class WidgetPlaceholderComponent implements OnInit {
 
 	@Input() page: Page;
 
+	@Input() index: number;
+
 	public widgetDefinition: WidgetDefinition;
 
 	public loaded: boolean = false;
@@ -64,5 +66,4 @@ export class WidgetPlaceholderComponent implements OnInit {
 			this.widgetConfiguration
 		);
 	}
-
 }

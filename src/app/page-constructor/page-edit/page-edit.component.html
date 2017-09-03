@@ -63,22 +63,17 @@
 		</div>
 	</div>
 
-	<div class="card-body" >
-		<div class="list-group">
+	<div class="card-body" [hidden]="view == 'pageProps'">
+		<div 
+			[ngClass]="{'list-group': view == 'structure'}"
+			[sortablejs]="page.configuration">
 			<app-widget-placeholder
-				[hidden]="view !== 'structure'"
+				*ngFor="let widget of page.configuration; let i = index"
+				[structuralView]="view == 'structure'"
 				[widgetConfiguration]="widget"
 				[page]="page"
-				*ngFor="let widget of page.configuration"
-				class="list-group-item">
-			</app-widget-placeholder>
-
-			<app-widget-placeholder
-				[hidden]="view !== 'content'"
-				[widgetConfiguration]="widget"
-				[page]="page"
-				[structuralView]="false"
-				*ngFor="let widget of page.configuration">
+				[index]="i"
+				[ngClass]="{'list-group-item': view == 'structure'}">
 			</app-widget-placeholder>
 		</div>
 
