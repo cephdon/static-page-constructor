@@ -1,0 +1,25 @@
+<div 
+	*ngFor="let prop of props" 
+	class="form-group">
+	<div [formGroup]="form">
+		<label [attr.for]="prop.key">
+			{{prop.desc}}
+		</label>
+
+		<div [ngSwitch]="prop.type">
+
+			<input 
+				*ngSwitchCase="'string'" 
+				[formControlName]="prop.key"
+        		[type]="prop.type" 
+        		class="form-control"/>
+
+			<input 
+				*ngSwitchCase="'email'" 
+				[formControlName]="prop.key"
+        		[type]="prop.type" 
+        		class="form-control" />
+
+		</div>
+	</div>
+</div>

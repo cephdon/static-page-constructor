@@ -1,0 +1,14 @@
+<div 
+	class="form-group">
+	<div [formGroup]="form">
+		<label for="widget">
+			Widget
+		</label>
+
+		<select
+			[formControlName]="'widgetType'"
+			class="form-control">
+				<option *ngFor="let w of widgets" [ngValue]="w">{{w.name}}</option>
+			</select>
+	</div>
+</div>

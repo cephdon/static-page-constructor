@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiRoot: 'https://fwncn1u6d8.execute-api.eu-west-1.amazonaws.com/dev',
+  apiKey: 'Di8Jj1C0DbaspyQxqF7ds9jGy2JugiZvaZmxbvTq'
 };

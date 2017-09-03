@@ -1,0 +1,36 @@
+<div class="modal-header">
+	<h4 class="modal-title">{{ widgetConfiguration.widget }} Widget Configuration</h4>
+	
+	<button 
+		type="button" 
+		class="close" 
+		aria-label="Close" 
+		(click)="activeModal.dismiss()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+	<div class="modal-body">
+		<app-widget-props 
+			[form]="form"
+			[widgetConfiguration]="widgetConfiguration" 
+			[widgetDefinition]="widgetDefinition"></app-widget-props>
+	</div>
+
+	<div class="modal-footer">
+		<button 
+			type="button" 
+			class="btn btn-outline-dark" 
+			(click)="activeModal.dismiss()">
+			Close
+		</button>
+
+		<button 
+			[disabled]="!form.valid"
+			type="submit" 
+			class="btn btn-primary">
+			Save
+		</button>
+	</div>
+</form>

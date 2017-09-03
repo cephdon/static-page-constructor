@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from './../shared/shared.module';
 
 import { LayoutComponent } from './layout.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { LayoutComponent } from './layout.component';
     SharedModule
   ],
   declarations: [
-  	LayoutComponent
+  	LayoutComponent,
+  	NavComponent
   ],
   exports: [
   	LayoutComponent

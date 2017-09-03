@@ -1,18 +1,43 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
 import { RouterModule } from '@angular/router';
+
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { SlimLoadingBarModule, SlimLoadingBarService } from 'ng2-slim-loading-bar';
+
+import { SPCInterceptor } from './intercept';
+
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModule,
-  ],
-  declarations: [],
-  exports: [
-  	NgbModule,
-  	RouterModule
-  ]
+	imports: [
+		CommonModule,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		SlimLoadingBarModule.forRoot(),
+		HttpClientModule,
+	],
+	declarations: [],
+	exports: [
+		NgbModule,
+		RouterModule,
+		FormsModule,
+		ReactiveFormsModule,
+		SlimLoadingBarModule,
+		HttpClientModule,
+	],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: SPCInterceptor,
+			multi: true,
+		},
+		SlimLoadingBarService
+	]
 })
 export class SharedModule { }

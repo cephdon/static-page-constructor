@@ -1,0 +1,35 @@
+<div class="modal-header">
+	<h4 class="modal-title">Add Widget</h4>
+	
+	<button 
+		type="button" 
+		class="close" 
+		aria-label="Close" 
+		(click)="activeModal.dismiss()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+	<div class="modal-body">
+		<app-widget-selector
+			[form]="form">
+		</app-widget-selector>
+	</div>
+
+	<div class="modal-footer">
+		<button 
+			type="button" 
+			class="btn btn-outline-dark" 
+			(click)="activeModal.dismiss()">
+			Close
+		</button>
+
+		<button 
+			type="submit" 
+			class="btn btn-primary"
+			[disabled]="!form.valid">
+			Save
+		</button>
+	</div>
+</form>

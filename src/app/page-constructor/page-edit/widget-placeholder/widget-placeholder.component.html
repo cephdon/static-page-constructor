@@ -1,0 +1,35 @@
+<div 
+	*ngIf="structuralView"
+	(dblclick)="openWidgetPropsWindow()"
+	class="widget-placeholder structural-view">
+	{{ widgetDefinition?.name }}
+
+	<span *ngIf="!loaded" class="loader">
+		Loading...
+	</span>
+
+	<div class="float-right">
+		<button class="btn btn-link btn-sm" (click)="openWidgetPropsWindow()">
+			Edit
+		</button>
+
+		<button class="btn btn-danger btn-sm" (click)="removeWidget()">
+			<span class="oi oi-delete"></span>
+		</button>
+	</div>
+</div>
+
+<div 
+	*ngIf="!structuralView" 
+	class="widget-placeholder content-view">
+
+	<img 
+		*ngIf="loaded" 
+		[src]="widgetDefinition.previewImage"
+		(dblclick)="openWidgetPropsWindow()">
+
+	<span *ngIf="!loaded" class="loader">
+		Loading...
+	</span>
+
+</div>
