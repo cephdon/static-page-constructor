@@ -1,4 +1,4 @@
-(-) Delete confirmation
-(-) Add multiple widgets
-(-) Content Areas
-(-) Static Files
+- Delete confirmation
+- Add multiple widgets
+- Content Areas
+- Static Files
