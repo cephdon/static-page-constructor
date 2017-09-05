@@ -77,14 +77,6 @@
 				[ngClass]="{'list-group-item': view == 'structure'}">
 			</app-widget-placeholder>
 		</div>
-
-		<div 
-			class="alert alert-warning" 
-			role="alert" 
-			*ngIf="!page.configuration.length">
-			No widgets yet
-		</div>
-
 	</div>
 
 	<div class="card-body" [hidden]="view !== 'pageProps'">
