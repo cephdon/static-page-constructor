@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PagesService } from './pages.service';
 import { WidgetsService } from './widgets.service';
 import { LoginService } from './login.service';
+import { CognitoService } from './cognito.service';
 
 @NgModule({
 	imports: [
@@ -13,7 +14,8 @@ import { LoginService } from './login.service';
 	providers: [
 		PagesService,
 		WidgetsService,
-		LoginService
+		LoginService,
+		CognitoService
 	]
 })
 export class CoreModule { }

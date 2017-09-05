@@ -1,5 +1,5 @@
 <div class="container">
-	<form class="form-signin" [formGroup]="form">
+	<form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
 		<h2 class="form-signin-heading">
 			Please sign in
 		</h2>
@@ -25,6 +25,7 @@
 			type="password" 
 			id="inputPassword" 
 			class="form-control" 
+			value="=g_3U}G@" 
 			placeholder="Password">
 
 		<div class="checkbox">
