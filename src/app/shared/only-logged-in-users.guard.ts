@@ -20,6 +20,9 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
 				this.router.navigate(['/login']);
 				return false;
 			}
+		}).catch(() => {
+			this.router.navigate(['/login']);
+			return false;
 		});
 	}
 }

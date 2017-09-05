@@ -31,7 +31,7 @@ export class LoginService {
 					}
 				});
 			} else {
-				reject('Can\'t retrieve the CurrentUser');
+				resolve(false);
 			}
 		});
 	}
