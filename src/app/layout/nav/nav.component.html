@@ -4,7 +4,26 @@
 	<a class="navbar-brand" href="#">Static Page Constructor</a>
 	<ul class="navbar-nav mr-auto">
 		<li class="nav-item">
+			<a 
+				class="nav-link" 
+				[routerLink]="['/page-constructor']"
+				routerLinkActive="active">
+				Page Constructor
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<a 
+				class="nav-link" 
+				[routerLink]="['/static-files']"
+				routerLinkActive="active">
+				Static Files
+			</a>
+		</li>
+
+		<li class="nav-item">
 			<a class="nav-link" href="http://bootstrap-marketing-site.s3-website-eu-west-1.amazonaws.com/" target="_blank">
+				<span class="oi oi-external-link"></span>
 				View Site
 			</a>
 		</li>

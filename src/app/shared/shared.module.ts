@@ -14,6 +14,7 @@ import { SlimLoadingBarModule, SlimLoadingBarService } from 'ng2-slim-loading-ba
 import { SortablejsModule } from 'angular-sortablejs';
 
 import { SPCInterceptor } from './intercept';
+import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
 
 @NgModule({
 	imports: [
@@ -41,7 +42,8 @@ import { SPCInterceptor } from './intercept';
 			useClass: SPCInterceptor,
 			multi: true,
 		},
-		SlimLoadingBarService
+		SlimLoadingBarService,
+		OnlyLoggedInUsersGuard
 	]
 })
 export class SharedModule { }
