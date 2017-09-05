@@ -6,6 +6,7 @@ import { WidgetsService } from './widgets.service';
 import { LoginService } from './login.service';
 import { CognitoService } from './cognito.service';
 import { ChangePasswordService } from './change-password.service';
+import { UserProfileService } from './user-profile.service';
 
 @NgModule({
 	imports: [
@@ -17,7 +18,8 @@ import { ChangePasswordService } from './change-password.service';
 		WidgetsService,
 		LoginService,
 		CognitoService,
-		ChangePasswordService
+		ChangePasswordService,
+		UserProfileService
 	]
 })
 export class CoreModule { }

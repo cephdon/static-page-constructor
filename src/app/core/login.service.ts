@@ -23,7 +23,7 @@ export class LoginService {
 				cognitoUser.getSession(function(err, session) {
 					if (err) {
 						console.log("UserLoginService: Couldn't get the session: " + err, err.stack);
-						reject(err);
+						resolve(false);
 					}
 					else {
 						console.log("UserLoginService: Session is " + session.isValid());
@@ -37,7 +37,8 @@ export class LoginService {
 	}
 
 	public logout() {
-
+		const user = this.cognitoService.getCurrentUser();
+		user && user.signOut();
 	}
 
 	public authenticate(username: string, password: string): Promise<any> {

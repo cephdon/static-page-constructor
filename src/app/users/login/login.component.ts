@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 		}
 
 		this.loginService.authenticate(this.form.value.email, this.form.value.password).then(() => {
-
+			this.router.navigate(['/']);
 		}).catch((err: string) => {
 			if (err === this.loginService.NEW_PASSWORD_REQUIRED) {
 				this.router.navigate(['/set-password']);

@@ -11,9 +11,11 @@ import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 
 import { LayoutComponent } from './layout/layout.component';
+import { NarrowComponent } from './layout/narrow/narrow.component';
 
 import { LoginComponent } from './users/login/login.component';
 import { SetPasswordComponent } from './users/set-password/set-password.component';
+import { LogoutComponent } from './users/logout/logout.component';
 
 import { OnlyLoggedInUsersGuard } from './shared/only-logged-in-users.guard';
 
@@ -45,13 +47,16 @@ const routes: Routes = [
 
 	{
 		path: '',
-		component: LayoutComponent,
+		component: NarrowComponent,
 		children: [
 			{
 				path: 'login',
 				component: LoginComponent,
 			},
-
+			{
+				path: 'logout',
+				component: LogoutComponent,
+			},
 			{
 				path: 'set-password',
 				component: SetPasswordComponent
