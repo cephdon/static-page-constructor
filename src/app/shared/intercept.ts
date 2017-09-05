@@ -22,9 +22,11 @@ export class SPCInterceptor implements HttpInterceptor {
 			}
 		});
 
-		this.slimLoadingBarService.start();
-
 		return next.handle(dupReq).do(event => {
+			if (event instanceof HttpRequest) {
+				this.slimLoadingBarService.start();
+			}
+
 			if (event instanceof HttpResponse) {
 				this.slimLoadingBarService.complete();
 			}
