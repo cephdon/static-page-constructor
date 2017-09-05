@@ -13,6 +13,7 @@ import { UsersModule } from './users/users.module';
 import { LayoutComponent } from './layout/layout.component';
 
 import { LoginComponent } from './users/login/login.component';
+import { SetPasswordComponent } from './users/set-password/set-password.component';
 
 import { OnlyLoggedInUsersGuard } from './shared/only-logged-in-users.guard';
 
@@ -43,8 +44,19 @@ const routes: Routes = [
 	},
 
 	{
-		path: 'login',
-		component: LoginComponent,
+		path: '',
+		component: LayoutComponent,
+		children: [
+			{
+				path: 'login',
+				component: LoginComponent,
+			},
+
+			{
+				path: 'set-password',
+				component: SetPasswordComponent
+			},
+		],
 	},
 
 	{ path: '**', redirectTo: 'page-constructor' }
