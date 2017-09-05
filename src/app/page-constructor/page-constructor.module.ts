@@ -17,7 +17,6 @@ import { WidgetPropsComponent } from './page-edit/widget-props/widget-props.comp
 import { WidgetSelectorComponent } from './page-edit/widget-selector/widget-selector.component';
 import { AddPageModalContentComponent } from './page-edit/add-page-modal-content/add-page-modal-content.component';
 import { PagePropsComponent } from './page-edit/page-props/page-props.component';
-import { NoPageSelectedComponent } from './no-page-selected/no-page-selected.component';
 
 @NgModule({
 	imports: [
@@ -39,7 +38,6 @@ import { NoPageSelectedComponent } from './no-page-selected/no-page-selected.com
 		WidgetSelectorComponent,
 		AddPageModalContentComponent,
 		PagePropsComponent,
-		NoPageSelectedComponent,
 	],
 	entryComponents: [
 		WidgetPropsModalContentComponent,

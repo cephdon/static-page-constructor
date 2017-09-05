@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { PagesService, Page } from './../core/pages.service';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 import { AddPageModalContentComponent } from './page-edit/add-page-modal-content/add-page-modal-content.component';
 
@@ -16,11 +16,19 @@ export class PageConstructorComponent implements OnInit {
 
 	subscription: any;
 
+	@ViewChild(NgbPopover) public popover: NgbPopover;
+
 	constructor(private pagesService: PagesService,
 				private modalService: NgbModal) { }
 
 	getPages() {
-		this.pagesService.getPages().then(pages => this.pages = pages);
+		this.pagesService.getPages().then(pages => this.pages = pages).then(() => {
+			if (!this.pages.length) {
+				this.popover.open();
+			} else {
+				this.popover.close();
+			}
+		});
 	}
 
 	ngOnInit() {
