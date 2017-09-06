@@ -23,4 +23,10 @@ export const environment = {
 	cognito_idp_endpoint: '',
 
 	cognito_identity_endpoint: '',
+
+	staticFilesBucket: 'bootstrap-marketing-site',
+
+	staticFilesKeyPrefix: 'media',
+
+	s3Endpoint: '',
 };

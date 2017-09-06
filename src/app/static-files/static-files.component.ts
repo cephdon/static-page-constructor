@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StaticFilesService } from '../core/static-files.service';
+
 @Component({
   selector: 'app-static-files',
   templateUrl: './static-files.component.html',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaticFilesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private staticFilesService: StaticFilesService) { }
 
   ngOnInit() {
+  	this.staticFilesService.listStaticFiles();
   }
 
 }
