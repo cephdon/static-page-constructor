@@ -4,18 +4,20 @@ import { Injectable } from '@angular/core';
 
 import { S3Service } from './s3.service';
 
+import { File } from './file';
+
 import { environment } from "../../environments/environment";
 
 @Injectable()
 export class StaticFilesService {
-	private _staticFilesSubject: BehaviorSubject<any[]>;
-	private _staticFiles: any[] = [];
+	private _staticFilesSubject: BehaviorSubject<File[]>;
+	private _staticFiles: File[] = [];
 
 	constructor(private s3Service: S3Service) {
-		this._staticFilesSubject = <BehaviorSubject<any[]>>new BehaviorSubject([]);
+		this._staticFilesSubject = <BehaviorSubject<File[]>>new BehaviorSubject([]);
 	}
 
-	public staticfiles(): Observable<any[]> {
+	public staticfiles(): Observable<File[]> {
 		return this._staticFilesSubject.asObservable();
 	}
 
@@ -23,13 +25,16 @@ export class StaticFilesService {
 		this._staticFilesSubject.next(this._staticFiles.filter(file => {
 			switch(opts.control) {
 				case 'Documents': {
-					return file.Ext == 'doc' || file.Ext == 'docx' || file.Ext == 'xls' || file.Ext == 'pdf';
+					return file.isDocument();
 				}
 				case 'Audio': {
-					return file.Ext == 'mp3';
+					return file.isAudio();
+				}
+				case 'Video': {
+					return file.isVideo();
 				}
 				case 'Images': {
-					return file.Ext == 'jpg' || file.Ext == 'png' || file.Ext == 'gif'; ;
+					return file.isImage();
 				}
 				default: {
 					return true;
@@ -39,10 +44,11 @@ export class StaticFilesService {
 	}
 
 	public loadStaticFiles() {
-		this.s3Service.listStaticFiles().then(files => files.map(file => {
-				file.Url = `${environment.staticFilesRoot}/${file.Key}`
-				file.Name = file.Key.split('/').pop();
-				file.Ext = file.Key.split('.').pop();
+		this.s3Service.listStaticFiles().then(files => files.map(fileObj => {
+				const file = new File();
+				file.name = fileObj.Key.split('/').pop();
+				file.url = `${environment.staticFilesRoot}/${fileObj.Key}`;
+				file.lastModified = fileObj.LastModified;
 
 				return file;
 			})

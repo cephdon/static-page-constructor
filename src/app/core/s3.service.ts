@@ -6,13 +6,16 @@ import { Injectable } from '@angular/core';
 import { CognitoService } from './cognito.service';
 import { AwsCredentialsService } from './aws-credentials.service';
 
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+
 import { environment } from "../../environments/environment";
 
 @Injectable()
 export class S3Service {
 
 	constructor(private cognitoService: CognitoService,
-				private awsCredentialsService: AwsCredentialsService) { 
+				private awsCredentialsService: AwsCredentialsService,
+				private slimLoadingBarService: SlimLoadingBarService) { 
 		AWS.config.region = environment.region;
 	}
 
@@ -39,6 +42,8 @@ export class S3Service {
 	}
 
 	public listStaticFiles(): Promise<any> {
+		this.slimLoadingBarService.start();
+
 		return new Promise((resolve, reject) => {
 
 			this.cognitoService.getIdToken().then((token) => {
@@ -47,7 +52,14 @@ export class S3Service {
 
 					this.getS3().listObjectsV2({
 						Prefix: environment.staticFilesKeyPrefix + '/' 
-					}, (err, data) => err ? reject(err) : resolve(data.Contents.filter(f => !!f.Size)));
+					}, (err, data) => {
+						if (err) {
+							reject(err);
+						} else { 
+							this.slimLoadingBarService.complete();
+							resolve(data.Contents.filter(f => !!f.Size));
+						}
+					});
 
 				});
 

@@ -1,43 +1,35 @@
 <div class="file-box">
     <div class="file">
-        <a [href]="file.Url">
+        <a [href]="file.url">
             <span class="corner"></span>
             <div class="icon" [ngSwitch]="true">
                 <img 
                     alt="image" 
                     class="img-responsive" 
-                    [src]="file.Url"
-                    *ngSwitchCase="file.Ext == 'jpg' || file.Ext == 'png' || file.Ext == 'gif'">
+                    [src]="file.url"
+                    *ngSwitchCase="file.isImage()">
 
                 <i 
                     class="fa fa-music"
-                    *ngSwitchCase="file.Ext == 'mp3'"></i>
+                    *ngSwitchCase="file.isAudio()"></i>
 
                 <i 
                     class="fa fa-film"
-                    *ngSwitchCase="file.Ext == 'mpg4' || file.Ext == 'avi'"></i>
-
-                <i 
-                    class="fa fa-bar-chart-o"
-                    *ngSwitchCase="file.Ext == 'xls'"></i>
-
-                <i 
-                    class="fa fa-file-pdf-o"
-                    *ngSwitchCase="file.Ext == 'pdf'"></i>
+                    *ngSwitchCase="file.isVideo()"></i>
 
                 <i 
                     class="fa fa-file"
-                    *ngSwitchCase="file.Ext == 'doc' || file.Ext == 'docx'"></i>
+                    *ngSwitchCase="file.isDocument()"></i>
 
                 <i 
                     class="fa fa-file"
                     *ngSwitchDefault></i>
             </div>
             <div class="file-name">
-                {{ file.Name }}
+                {{ file.name }}
                 <br>
                 <small>
-                    {{ file.LastModified| date }}
+                    {{ file.lastModified| date }}
                 </small>
             </div>
         </a>

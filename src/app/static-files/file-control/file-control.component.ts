@@ -16,6 +16,7 @@ export class FileControlComponent implements OnInit {
 		'Ale',
 		'Documents',
 		'Audio',
+		'Video',
 		'Images',
 	];
 
