@@ -6,6 +6,7 @@ import { SharedModule } from './../shared/shared.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { NarrowComponent } from './narrow/narrow.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
 	imports: [
@@ -15,7 +16,8 @@ import { NarrowComponent } from './narrow/narrow.component';
 	declarations: [
 		LayoutComponent,
 		NavComponent,
-		NarrowComponent
+		NarrowComponent,
+		FooterComponent
 	],
 	exports: [
 		LayoutComponent
