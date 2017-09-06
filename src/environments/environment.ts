@@ -28,5 +28,7 @@ export const environment = {
 
 	staticFilesKeyPrefix: 'media',
 
+	staticFilesRoot: 'http://bootstrap-marketing-site.s3-website-eu-west-1.amazonaws.com',
+
 	s3Endpoint: '',
 };

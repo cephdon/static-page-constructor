@@ -47,9 +47,7 @@ export class S3Service {
 
 					this.getS3().listObjectsV2({
 						Prefix: environment.staticFilesKeyPrefix + '/' 
-					}, (err, data) => err ? reject(err) : resolve(data.Contents.map(file => {
-						return file;
-					})));
+					}, (err, data) => err ? reject(err) : resolve(data.Contents.filter(f => !!f.Size)));
 
 				});
 

@@ -1,5 +1,6 @@
 .file-box {
   float: left;
+  width: 300px;
 }
 .file {
   border: 1px solid #e7eaec;

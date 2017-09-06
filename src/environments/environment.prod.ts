@@ -23,5 +23,7 @@ export const environment = {
 
 	staticFilesKeyPrefix: '',
 
+	staticFilesRoot: '',
+
 	s3Endpoint: '',
 };
