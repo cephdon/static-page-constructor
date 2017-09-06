@@ -13,6 +13,8 @@ export class StaticFilesService {
 		return this.s3Service.listStaticFiles().then(files => files.map(file => {
 				file.Url = `${environment.staticFilesRoot}/${file.Key}`
 				file.Name = file.Key.split('/').pop();
+				file.Ext = file.Key.split('.').pop();
+
 				return file;
 			})
 		);
