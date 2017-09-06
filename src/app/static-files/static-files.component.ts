@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { StaticFilesService } from '../core/static-files.service';
 
@@ -7,15 +7,23 @@ import { StaticFilesService } from '../core/static-files.service';
 	templateUrl: './static-files.component.html',
 	styleUrls: ['./static-files.component.css']
 })
-export class StaticFilesComponent implements OnInit {
+export class StaticFilesComponent implements OnInit, OnDestroy {
 	public files: any[] = [];
+
+	private subscription: any;
 
 	constructor(private staticFilesService: StaticFilesService) { }
 
 	ngOnInit() {
-		this.staticFilesService.listStaticFiles().then(files => {
+		this.staticFilesService.loadStaticFiles()
+
+		this.subscription = this.staticFilesService.staticfiles().subscribe(files => {
 			this.files = files;
 		});
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 }

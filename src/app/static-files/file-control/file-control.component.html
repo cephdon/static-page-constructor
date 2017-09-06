@@ -1,4 +1,8 @@
-<a href="#" class="file-control active">Ale</a>
-<a href="#" class="file-control">Documents</a>
-<a href="#" class="file-control">Audio</a>
-<a href="#" class="file-control">Images</a>	
+<a 
+	*ngFor="let control of controls"
+	[ngClass]="{'active': control == activeControl}"
+	(click)="activateControl(control)"
+	href="javascript:void(0);" 
+	class="file-control">
+	{{ control }}
+</a>
