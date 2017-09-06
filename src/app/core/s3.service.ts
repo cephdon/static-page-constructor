@@ -53,10 +53,11 @@ export class S3Service {
 					this.getS3().listObjectsV2({
 						Prefix: environment.staticFilesKeyPrefix + '/' 
 					}, (err, data) => {
+						this.slimLoadingBarService.complete();
+
 						if (err) {
 							reject(err);
 						} else { 
-							this.slimLoadingBarService.complete();
 							resolve(data.Contents.filter(f => !!f.Size));
 						}
 					});
@@ -65,6 +66,21 @@ export class S3Service {
 
 			}).catch(reject);
 
+		});
+	}
+
+	public upload(file): Promise<any> {
+		this.slimLoadingBarService.start();
+
+		return new Promise((resolve, reject) => {
+			this.getS3().upload({
+				Key: `${environment.staticFilesKeyPrefix}/${file.name}`,
+				ContentType: file.type,
+				Body: file
+			}, (err, data) => {
+				this.slimLoadingBarService.complete();
+				err ? reject(err) : resolve()
+			});
 		});
 	}
 }

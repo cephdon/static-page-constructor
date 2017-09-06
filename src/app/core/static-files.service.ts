@@ -9,7 +9,7 @@ import { File } from './file';
 import { environment } from "../../environments/environment";
 
 @Injectable()
-export class StaticFilesService {
+class StaticFilesService {
 	private _staticFilesSubject: BehaviorSubject<File[]>;
 	private _staticFiles: File[] = [];
 
@@ -58,4 +58,17 @@ export class StaticFilesService {
 		});
 	}
 
+	public upload(files: any[]|any): Promise<any> {
+		files = Array.prototype.slice.call(files);
+
+		return Promise.all(files.map(file => this.s3Service.upload(file))).then(() => {
+			this.loadStaticFiles();
+		});
+	}
+
+}
+
+export {
+	File,
+	StaticFilesService
 }

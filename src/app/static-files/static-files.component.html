@@ -10,8 +10,13 @@
                     <div class="hr-line-dashed"></div>
 
                     <label class="btn btn-primary btn-file btn-block">
-                        Upload Files 
-                        <input type="file" style="display: none;">
+                        Upload Files
+                        <input 
+                            (change)="onFileUploadChange($event)"
+                            [accept]="accept"
+                            type="file"
+                            style="display: none;"
+                            multiple>
                     </label>
 
                     <div class="hr-line-dashed"></div>

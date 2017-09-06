@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { StaticFilesService } from '../core/static-files.service';
+import { StaticFilesService, File } from '../core/static-files.service';
 
 @Component({
 	selector: 'app-static-files',
@@ -9,10 +9,13 @@ import { StaticFilesService } from '../core/static-files.service';
 })
 export class StaticFilesComponent implements OnInit, OnDestroy {
 	public files: any[] = [];
+	public accept: string[];
 
 	private subscription: any;
 
-	constructor(private staticFilesService: StaticFilesService) { }
+	constructor(private staticFilesService: StaticFilesService) { 
+		this.accept = File.ALL;
+	}
 
 	ngOnInit() {
 		this.staticFilesService.loadStaticFiles()
@@ -24,6 +27,11 @@ export class StaticFilesComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
+	}
+
+	onFileUploadChange(event) {
+		const files = event.srcElement.files;
+		this.staticFilesService.upload(files);
 	}
 
 }
