@@ -18,6 +18,9 @@ import { FileBoxComponent } from './file-box/file-box.component';
 		StaticFilesComponent,
 		FileControlComponent,
 		FileBoxComponent,
+	],
+	exports: [
+		StaticFilesComponent
 	]
 })
 export class StaticFilesModule { }

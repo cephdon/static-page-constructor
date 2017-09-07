@@ -15,11 +15,10 @@ export class StaticFilesComponent implements OnInit, OnDestroy {
 
 	constructor(private staticFilesService: StaticFilesService) { 
 		this.accept = File.ALL;
+		this.staticFilesService.loadStaticFiles();
 	}
 
 	ngOnInit() {
-		this.staticFilesService.loadStaticFiles()
-
 		this.subscription = this.staticFilesService.staticfiles().subscribe(files => {
 			this.files = files;
 		});

@@ -9,6 +9,7 @@ import { PageConstructorModule } from './page-constructor/page-constructor.modul
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { StaticFilesModule } from './static-files/static-files.module';
 
 import { LayoutComponent } from './layout/layout.component';
 import { NarrowComponent } from './layout/narrow/narrow.component';

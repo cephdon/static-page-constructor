@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from './../shared/shared.module';
 
+import { StaticFilesModule } from './../static-files/static-files.module';
+
 import { PageConstructorRoutingModule } from './page-constructor-routing.module';
 import { PageConstructorComponent } from './page-constructor.component';
 import { PageEditComponent } from './page-edit/page-edit.component';
@@ -25,7 +27,8 @@ import { PageModalContentComponent } from './page-edit/prop-types/prop-type-link
 	imports: [
 		CommonModule,
 		SharedModule,
-		PageConstructorRoutingModule
+		PageConstructorRoutingModule,
+		StaticFilesModule,
 	],
 	providers: [
 		PageResolve,
