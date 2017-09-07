@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from './../../core/user-profile.service';
 import { LoginService } from './../../core/login.service';
 
+import { environment } from "../../../environments/environment";
+
 @Component({
 	selector: 'app-nav',
 	templateUrl: './nav.component.html',
@@ -11,6 +13,7 @@ import { LoginService } from './../../core/login.service';
 export class NavComponent implements OnInit {
 	public email: string;
 	public isAuthenticated: boolean = false;
+	public siteUrl: string = environment.siteRoot;
 
 	constructor(private userProfileService: UserProfileService,
 				private loginService: LoginService) { }

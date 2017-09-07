@@ -1,5 +1,7 @@
 import { WidgetConfiguration } from './widget';
 
+import { environment } from "../../environments/environment";
+
 export class Page {
 	name: string;
 	slug: string;
@@ -9,5 +11,9 @@ export class Page {
 		this.name = data.name;
 		this.slug = data.slug;
 		this.configuration = data.configuration;
+	}
+
+	get url(): string {
+		return `${environment.siteRoot}/${this.slug}.html`
 	}
 }

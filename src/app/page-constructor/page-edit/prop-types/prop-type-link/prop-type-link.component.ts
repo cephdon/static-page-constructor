@@ -30,12 +30,12 @@ export class PropTypeLinkComponent implements OnInit {
 	}
 
 	public openPageWindow() {
-		const ref = this.modalService.open(PageModalContentComponent, {
-			size: 'lg'
-		});
+		const ref = this.modalService.open(PageModalContentComponent);
 
 		ref.result.then((url: string) => {
-			//pass
+			this.formGroup.patchValue({
+				[this.prop.key]: url
+			});
 		}).catch(() => {});
 	}
 
