@@ -50,4 +50,8 @@ export class WidgetPropsComponent implements OnInit {
 		return prop.type === 'number';
 	}
 
+	public isLink(prop) {
+		return prop.type === 'link';
+	}
+
 }
