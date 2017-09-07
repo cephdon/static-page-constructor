@@ -6,19 +6,30 @@
 			{{prop.desc}}
 		</label>
 
-		<div [ngSwitch]="prop.type">
+		<div [ngSwitch]="true">
 
 			<input 
-				*ngSwitchCase="'string'" 
+				*ngSwitchCase="isText(prop)"
 				[formControlName]="prop.key"
-        		[type]="prop.type" 
-        		class="form-control"/>
+				type="text"
+				class="form-control"/>
+
+			<textarea
+				*ngSwitchCase="isTextarea(prop)"
+				[formControlName]="prop.key" 
+				class="form-control"></textarea>
 
 			<input 
-				*ngSwitchCase="'email'" 
+				*ngSwitchCase="isEmail(prop)" 
 				[formControlName]="prop.key"
-        		[type]="prop.type" 
-        		class="form-control" />
+				type="email"
+				class="form-control" />
+
+			<input 
+				*ngSwitchCase="isNumber(prop)" 
+				[formControlName]="prop.key"
+				type="number"
+				class="form-control" />
 
 		</div>
 	</div>
