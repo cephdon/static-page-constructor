@@ -1,0 +1,11 @@
+<form 
+	class="form-inline" 
+	(ngSubmit)="onSubmit()" 
+	[formGroup]="form">
+    <input 
+    	[formControlName]="'term'"
+        type="search" 
+        class="form-control form-control-sm float-right"
+        id="term" 
+        placeholder="Search">
+</form>
