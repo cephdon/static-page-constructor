@@ -6,8 +6,6 @@ import { S3Service } from './s3.service';
 
 import { File } from './file';
 
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-
 import { environment } from "../../environments/environment";
 
 @Injectable()
@@ -15,8 +13,7 @@ class StaticFilesService {
 	private _staticFilesSubject: BehaviorSubject<File[]>;
 	private _staticFiles: File[] = [];
 
-	constructor(private s3Service: S3Service,
-				private slimLoadingBarService: SlimLoadingBarService) {
+	constructor(private s3Service: S3Service) {
 		this._staticFilesSubject = <BehaviorSubject<File[]>>new BehaviorSubject([]);
 	}
 
@@ -47,8 +44,6 @@ class StaticFilesService {
 	}
 
 	public loadStaticFiles() {
-		this.slimLoadingBarService.start();
-
 		this.s3Service.listStaticFiles().then((data) => {
 			return data.Contents.filter(f => !!f.Size);
 		}).then(files => files.map(fileObj => {
@@ -60,7 +55,6 @@ class StaticFilesService {
 				return file;
 			})
 		).then(files => {
-			this.slimLoadingBarService.complete();
 			this._staticFiles = files;
 			this._staticFilesSubject.next(files);
 		});
@@ -69,11 +63,7 @@ class StaticFilesService {
 	public upload(files: any[]|any): Promise<any> {
 		files = Array.prototype.slice.call(files);
 
-		this.slimLoadingBarService.start();
-
 		return Promise.all(files.map(file => this.s3Service.upload(file))).then(() => {
-			this.slimLoadingBarService.complete();
-
 			this.loadStaticFiles();
 		});
 	}

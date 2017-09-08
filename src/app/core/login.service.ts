@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 
 import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-
 import { CognitoService } from './cognito.service';
 
 import { environment } from "../../environments/environment";
@@ -15,19 +13,14 @@ import { environment } from "../../environments/environment";
 export class LoginService {
 	public NEW_PASSWORD_REQUIRED: string = 'NEW_PASSWORD_REQUIRED';
 
-	constructor(private cognitoService: CognitoService,
-				private slimLoadingBarService: SlimLoadingBarService) { }
+	constructor(private cognitoService: CognitoService) { }
 
 	public isAuthenticated(): Promise<boolean> {
-		this.slimLoadingBarService.start();
-
 		return new Promise((resolve, reject) => {
 			let cognitoUser = this.cognitoService.getCurrentUser();
 
 			if (cognitoUser != null) {
 				cognitoUser.getSession((err, session) => {
-					this.slimLoadingBarService.complete();
-
 					if (err) {
 						console.log("UserLoginService: Couldn't get the session: " + err, err.stack);
 						resolve(false);
@@ -38,8 +31,6 @@ export class LoginService {
 					}
 				});
 			} else {
-				this.slimLoadingBarService.complete();
-
 				resolve(false);
 			}
 		});
@@ -65,13 +56,9 @@ export class LoginService {
 
 		let cognitoUser = new CognitoUser(userData);
 
-		this.slimLoadingBarService.start();
-
 		return new Promise((resolve, reject) => {
 			cognitoUser.authenticateUser(authenticationDetails, {
 				newPasswordRequired: (userAttributes, requiredAttributes) => {
-					this.slimLoadingBarService.complete();
-
 					reject(this.NEW_PASSWORD_REQUIRED);
 				},
 				onSuccess: (result) => {
@@ -94,15 +81,11 @@ export class LoginService {
 					const sts = new STS(clientParams);
 
 					sts.getCallerIdentity((err, data) => {
-						this.slimLoadingBarService.complete();
-
 						resolve(result);
 					});
 
 				},
 				onFailure: (err) => {
-					this.slimLoadingBarService.complete();
-
 					reject(err.message);
 				},
 			});
