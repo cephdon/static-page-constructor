@@ -3,6 +3,8 @@ import * as STS from "aws-sdk/clients/sts";
 
 import { Injectable } from '@angular/core';
 
+import { UiActivityIndicatorService } from './../shared/ui-activity-indicator.service';
+
 import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 
 import { CognitoService } from './cognito.service';
@@ -12,7 +14,8 @@ import { environment } from "../../environments/environment";
 @Injectable()
 export class ChangePasswordService {
 
-	constructor(private cognitoService: CognitoService) { }
+	constructor(private cognitoService: CognitoService,
+				private uiActivityIndicatorService: UiActivityIndicatorService) { }
 
 	newPassword(email: string, existingPassword: string, newPassword: string): Promise<any> {
 		let authenticationData = {
@@ -28,6 +31,8 @@ export class ChangePasswordService {
 		};
 
 		let cognitoUser = new CognitoUser(userData);
+
+		this.uiActivityIndicatorService.start();
 
 		return new Promise((resolve, reject) => {
 			cognitoUser.authenticateUser(authenticationDetails, {
@@ -54,6 +59,12 @@ export class ChangePasswordService {
 					reject(err);
 				}
 			});
+		}).then(x => {
+			this.uiActivityIndicatorService.done();
+			return x;
+		}, x => {
+			this.uiActivityIndicatorService.done();
+			throw x;
 		});
 	}
 

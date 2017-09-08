@@ -2,6 +2,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
+import { UiActivityIndicatorService } from './../shared/ui-activity-indicator.service';
+
 import { S3Service } from './s3.service';
 
 import { File } from './file';
@@ -13,7 +15,8 @@ class StaticFilesService {
 	private _staticFilesSubject: BehaviorSubject<File[]>;
 	private _staticFiles: File[] = [];
 
-	constructor(private s3Service: S3Service) {
+	constructor(private s3Service: S3Service,
+				private uiActivityIndicatorService: UiActivityIndicatorService) {
 		this._staticFilesSubject = <BehaviorSubject<File[]>>new BehaviorSubject([]);
 	}
 
@@ -56,6 +59,8 @@ class StaticFilesService {
 	}
 
 	public loadStaticFiles() {
+		this.uiActivityIndicatorService.start();
+
 		this.s3Service.listStaticFiles().then((data) => {
 			return data.Contents.filter(f => !!f.Size);
 		}).then(files => files.map(fileObj => {
@@ -69,6 +74,12 @@ class StaticFilesService {
 		).then(files => {
 			this._staticFiles = files;
 			this._staticFilesSubject.next(files);
+		}).then(x => {
+			this.uiActivityIndicatorService.done();
+			return x;
+		}, x => {
+			this.uiActivityIndicatorService.done();
+			throw x;
 		});
 	}
 
