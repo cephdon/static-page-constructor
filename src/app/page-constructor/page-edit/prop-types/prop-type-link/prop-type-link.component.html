@@ -1,0 +1,17 @@
+<div [formGroup]="formGroup">
+	<input 
+		#urlInput
+		[formControlName]="prop.key"
+		type="url"
+		class="form-control" />
+
+	<button 
+		(click)="openStaticFileWindow()"
+		type="button"
+		class="btn btn-link btn-sm">Static File Link</button>
+
+	<button 
+		(click)="openPageWindow()"
+		type="button"
+		class="btn btn-link btn-sm">Page Link</button>
+</div>

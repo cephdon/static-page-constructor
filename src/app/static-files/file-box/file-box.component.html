@@ -1,0 +1,37 @@
+<div class="file-box">
+    <div class="file" (click)="onClick()">
+        <a [href]="file.url" target="_blank">
+            <span class="corner"></span>
+            <div class="icon" [ngSwitch]="true">
+                <img 
+                    alt="image" 
+                    class="img-responsive" 
+                    [src]="file.url"
+                    *ngSwitchCase="file.isImage()">
+
+                <i 
+                    class="fa fa-music"
+                    *ngSwitchCase="file.isAudio()"></i>
+
+                <i 
+                    class="fa fa-film"
+                    *ngSwitchCase="file.isVideo()"></i>
+
+                <i 
+                    class="fa fa-file"
+                    *ngSwitchCase="file.isDocument()"></i>
+
+                <i 
+                    class="fa fa-file"
+                    *ngSwitchDefault></i>
+            </div>
+            <div class="file-name">
+                {{ file.name }}
+                <br>
+                <small>
+                    {{ file.lastModified| date }}
+                </small>
+            </div>
+        </a>
+    </div>
+</div>

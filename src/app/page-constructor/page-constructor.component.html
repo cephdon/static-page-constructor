@@ -1,31 +1,19 @@
 <div class="row">
-	<div class="col-2">
-		<div class="card">
-			<div class="card-header">
-				Pages
-				<div style="position: absolute; right: 10px; top: 10px">
-					<button 
-						type="button" 
-						class="btn btn-link btn-sm float-right"
-						(click)="openCreatePageWindow()">
-						Add
-					</button>
-				</div>
-			</div>
-			<div class="card-body">
-				<ul class="nav flex-column">
-					<li class="nav-item" *ngFor="let page of pages">
-						<a class="nav-link" [routerLink]="['page-edit', page.slug]" routerLinkActive="active">{{ page.name }}</a>
-					</li>
-				</ul>
-				<div 
-					class="alert alert-warning" 
-					role="alert" 
-					*ngIf="!pages.length">
-					No Pages yet
-				</div>
-			</div>
-		</div>
+	<div class="col-2 sidebar">
+		<ul class="nav flex-column">
+			<li class="nav-item" *ngFor="let page of pages">
+				<a class="nav-link" [routerLink]="['page-edit', page.slug]" routerLinkActive="active">{{ page.name }}</a>
+			</li>
+		</ul>
+
+		<hr>
+
+		<button 
+			type="button" 
+			class="btn btn-link btn-sm text-right"
+			(click)="openCreatePageWindow()">
+			Add
+		</button>
 	</div>
 	<div class="col-10">
 		<router-outlet></router-outlet>

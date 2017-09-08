@@ -5,14 +5,14 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } fr
 
 import { Observable } from 'rxjs';
 
-import { environment } from './../../environments/environment';
+import { NgProgressService } from 'ngx-progressbar';
 
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class SPCInterceptor implements HttpInterceptor {
 
-	constructor(private slimLoadingBarService: SlimLoadingBarService) {}
+	constructor(public progressService: NgProgressService) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		const dupReq = req.clone({
@@ -22,11 +22,11 @@ export class SPCInterceptor implements HttpInterceptor {
 			}
 		});
 
-		this.slimLoadingBarService.start();
+		this.progressService.start();
 
 		return next.handle(dupReq).do(event => {
 			if (event instanceof HttpResponse) {
-				this.slimLoadingBarService.complete();
+				this.progressService.done();
 			}
 		});
 	}

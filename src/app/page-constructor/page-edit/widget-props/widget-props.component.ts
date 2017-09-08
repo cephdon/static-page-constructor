@@ -34,4 +34,24 @@ export class WidgetPropsComponent implements OnInit {
 		})
 	}
 
+	public isText(prop) {
+		return prop.type === 'string';
+	}
+
+	public isTextarea(prop) {
+		return prop.type === 'longstring';
+	}
+
+	public isEmail(prop) {
+		return prop.type === 'email';
+	}
+
+	public isNumber(prop) {
+		return prop.type === 'number';
+	}
+
+	public isLink(prop) {
+		return prop.type === 'link';
+	}
+
 }

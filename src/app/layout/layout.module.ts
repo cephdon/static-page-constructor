@@ -5,18 +5,22 @@ import { SharedModule } from './../shared/shared.module';
 
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
+import { NarrowComponent } from './narrow/narrow.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule
-  ],
-  declarations: [
-  	LayoutComponent,
-  	NavComponent
-  ],
-  exports: [
-  	LayoutComponent
-  ]
+	imports: [
+		CommonModule,
+		SharedModule
+	],
+	declarations: [
+		LayoutComponent,
+		NavComponent,
+		NarrowComponent,
+		FooterComponent
+	],
+	exports: [
+		LayoutComponent
+	]
 })
 export class LayoutModule { }
