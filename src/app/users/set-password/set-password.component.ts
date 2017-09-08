@@ -44,7 +44,9 @@ export class SetPasswordComponent implements OnInit {
 			this.form.value.email,
 			this.form.value.temppassword,
 			this.form.value.newpassword,
-		);
+		).then(() => {
+			this.router.navigate(['/']);
+		});
 	}
 
 }

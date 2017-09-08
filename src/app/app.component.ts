@@ -18,7 +18,8 @@ export class AppComponent implements OnInit {
 		this.loginService.isAuthenticated.subscribe(isAuthenticated => {
 			if (!isAuthenticated && 
 				this.router.url !== '/login' && 
-				this.router.url !== '/logout') {
+				this.router.url !== '/logout' &&
+				this.router.url !== '/set-password') {
 				this.router.navigate(['/login']);
 			}
 		});
