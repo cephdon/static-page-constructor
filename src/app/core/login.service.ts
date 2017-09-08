@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
+import { UiActivityIndicatorService } from './../shared/ui-activity-indicator.service';
+
 import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 
 import { CognitoService } from './cognito.service';
@@ -19,7 +21,8 @@ export class LoginService {
 
 	public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-	constructor(private cognitoService: CognitoService) { 
+	constructor(private cognitoService: CognitoService,
+				private uiActivityIndicatorService: UiActivityIndicatorService) { 
 		this.getAuthentionStatus()
 	}
 
@@ -71,6 +74,8 @@ export class LoginService {
 
 		let cognitoUser = new CognitoUser(userData);
 
+		this.uiActivityIndicatorService.start();
+
 		return new Promise((resolve, reject) => {
 			cognitoUser.authenticateUser(authenticationDetails, {
 				newPasswordRequired: (userAttributes, requiredAttributes) => {
@@ -106,9 +111,11 @@ export class LoginService {
 			});
 		}).then(x => {
 			this.isAuthenticatedSubject.next(true);
+			this.uiActivityIndicatorService.done();
 			return x;
 		}, x => {
 			this.isAuthenticatedSubject.next(false);
+			this.uiActivityIndicatorService.done();
 			throw x;
 		});
 	}

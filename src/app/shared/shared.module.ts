@@ -16,6 +16,7 @@ import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
 
 import { NgProgressModule } from 'ngx-progressbar';
 import { UiActivityIndicatorService } from './ui-activity-indicator.service';
+import { ShakeButtonDirective } from './shake-button.directive';
 
 @NgModule({
 	imports: [
@@ -27,7 +28,9 @@ import { UiActivityIndicatorService } from './ui-activity-indicator.service';
 		SortablejsModule,
 		NgProgressModule,
 	],
-	declarations: [],
+	declarations: [
+		ShakeButtonDirective
+	],
 	exports: [
 		NgbModule,
 		RouterModule,
@@ -36,6 +39,7 @@ import { UiActivityIndicatorService } from './ui-activity-indicator.service';
 		HttpClientModule,
 		SortablejsModule,
 		NgProgressModule,
+		ShakeButtonDirective,
 	],
 	providers: [
 		{
