@@ -16,8 +16,7 @@ const routes: Routes = [
 				path: 'page-edit/:id',
 				component: PageEditComponent,
 				resolve: {
-					page: PageResolve,
-					widgets: WidgetsResolve,
+					page: PageResolve
 				}
 			}
 		]
