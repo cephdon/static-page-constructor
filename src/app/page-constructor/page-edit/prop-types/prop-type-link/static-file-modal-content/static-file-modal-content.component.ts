@@ -14,4 +14,8 @@ export class StaticFileModalContentComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	onFileSelected(file) {
+		this.activeModal.close(file.url);
+	}
+
 }

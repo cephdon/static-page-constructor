@@ -25,7 +25,9 @@ export class PropTypeLinkComponent implements OnInit {
 		});
 
 		ref.result.then((url: string) => {
-			//pass
+			this.formGroup.patchValue({
+				[this.prop.key]: url
+			});
 		}).catch(() => {});
 	}
 

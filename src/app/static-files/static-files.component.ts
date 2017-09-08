@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 
 import { StaticFilesService, File } from '../core/static-files.service';
 
@@ -12,6 +12,10 @@ export class StaticFilesComponent implements OnInit, OnDestroy {
 	public accept: string[];
 
 	private subscription: any;
+
+	@Input() selectFileMode = false;
+
+	@Output() fileSelected = new EventEmitter<File>();
 
 	constructor(private staticFilesService: StaticFilesService) { 
 		this.accept = File.ALL;
@@ -31,6 +35,10 @@ export class StaticFilesComponent implements OnInit, OnDestroy {
 	onFileUploadChange(event) {
 		const files = event.srcElement.files;
 		this.staticFilesService.upload(files);
+	}
+
+	onFileSelected(file) {
+		this.fileSelected.emit(file);
 	}
 
 }

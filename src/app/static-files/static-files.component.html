@@ -55,6 +55,8 @@
             <div class="col-lg-12">
                 <app-file-box 
                     *ngFor="let file of files"
+                    [selectFileMode]="selectFileMode"
+                    (fileSelected)="onFileSelected($event)"
                     [file]="file">
                 </app-file-box>
             </div>

@@ -11,7 +11,10 @@
 </div>
 
 <div class="modal-body">
-	<app-static-files></app-static-files>
+	<app-static-files
+		[selectFileMode]="true"
+		(fileSelected)="onFileSelected($event)">
+</app-static-files>
 </div>
 
 <div class="modal-footer">
