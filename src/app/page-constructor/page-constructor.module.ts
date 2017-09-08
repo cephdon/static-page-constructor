@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from './../shared/shared.module';
 
+import { StaticFilesModule } from './../static-files/static-files.module';
+
 import { PageConstructorRoutingModule } from './page-constructor-routing.module';
 import { PageConstructorComponent } from './page-constructor.component';
 import { PageEditComponent } from './page-edit/page-edit.component';
@@ -17,12 +19,16 @@ import { WidgetPropsComponent } from './page-edit/widget-props/widget-props.comp
 import { WidgetSelectorComponent } from './page-edit/widget-selector/widget-selector.component';
 import { AddPageModalContentComponent } from './page-edit/add-page-modal-content/add-page-modal-content.component';
 import { PagePropsComponent } from './page-edit/page-props/page-props.component';
+import { PropTypeLinkComponent } from './page-edit/prop-types/prop-type-link/prop-type-link.component';
+import { StaticFileModalContentComponent } from './page-edit/prop-types/prop-type-link/static-file-modal-content/static-file-modal-content.component';
+import { PageModalContentComponent } from './page-edit/prop-types/prop-type-link/page-modal-content/page-modal-content.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		SharedModule,
-		PageConstructorRoutingModule
+		PageConstructorRoutingModule,
+		StaticFilesModule,
 	],
 	providers: [
 		PageResolve,
@@ -38,11 +44,16 @@ import { PagePropsComponent } from './page-edit/page-props/page-props.component'
 		WidgetSelectorComponent,
 		AddPageModalContentComponent,
 		PagePropsComponent,
+		PropTypeLinkComponent,
+		StaticFileModalContentComponent,
+		PageModalContentComponent,
 	],
 	entryComponents: [
 		WidgetPropsModalContentComponent,
 		AddWidgetModalContentComponent,
-		AddPageModalContentComponent
+		AddPageModalContentComponent,
+		StaticFileModalContentComponent,
+		PageModalContentComponent,
 	]
 })
 export class PageConstructorModule { }

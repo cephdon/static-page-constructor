@@ -22,29 +22,43 @@ class StaticFilesService {
 	}
 
 	public filter(opts) {
-		this._staticFilesSubject.next(this._staticFiles.filter(file => {
-			switch(opts.control) {
-				case 'Documents': {
-					return file.isDocument();
+		let newFiles = this._staticFiles
+
+		if (opts.control) {
+			newFiles = this._staticFiles.filter(file => {
+				switch(opts.control) {
+					case 'Documents': {
+						return file.isDocument();
+					}
+					case 'Audio': {
+						return file.isAudio();
+					}
+					case 'Video': {
+						return file.isVideo();
+					}
+					case 'Images': {
+						return file.isImage();
+					}
+					default: {
+						return true;
+					}
 				}
-				case 'Audio': {
-					return file.isAudio();
-				}
-				case 'Video': {
-					return file.isVideo();
-				}
-				case 'Images': {
-					return file.isImage();
-				}
-				default: {
-					return true;
-				}
-			}
-		}));
+			});
+		}
+
+		if (opts.term) {
+			newFiles = this._staticFiles.filter(file => {
+				return file.name.toLowerCase().indexOf(opts.term.toLowerCase()) > -1;
+			});
+		}
+
+		this._staticFilesSubject.next(newFiles);
 	}
 
 	public loadStaticFiles() {
-		this.s3Service.listStaticFiles().then(files => files.map(fileObj => {
+		this.s3Service.listStaticFiles().then((data) => {
+			return data.Contents.filter(f => !!f.Size);
+		}).then(files => files.map(fileObj => {
 				const file = new File();
 				file.name = fileObj.Key.split('/').pop();
 				file.url = `${environment.staticFilesRoot}/${fileObj.Key}`;

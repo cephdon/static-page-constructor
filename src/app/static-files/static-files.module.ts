@@ -7,6 +7,7 @@ import { StaticFilesRoutingModule } from './static-files-routing.module';
 import { StaticFilesComponent } from './static-files.component';
 import { FileControlComponent } from './file-control/file-control.component';
 import { FileBoxComponent } from './file-box/file-box.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @NgModule({
 	imports: [
@@ -18,6 +19,10 @@ import { FileBoxComponent } from './file-box/file-box.component';
 		StaticFilesComponent,
 		FileControlComponent,
 		FileBoxComponent,
+		SearchInputComponent,
+	],
+	exports: [
+		StaticFilesComponent
 	]
 })
 export class StaticFilesModule { }

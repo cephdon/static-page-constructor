@@ -31,6 +31,12 @@
 				type="number"
 				class="form-control" />
 
+			<app-prop-type-link
+				*ngSwitchCase="isLink(prop)"
+				[formGroup]="form"
+				[prop]="prop">
+			</app-prop-type-link>
+
 		</div>
 	</div>
 </div>

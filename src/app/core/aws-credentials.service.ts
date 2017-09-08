@@ -17,7 +17,7 @@ export class AwsCredentialsService {
 		return new Promise((resolve, reject) => {
 			creds.get(err => {
 				err ? reject(err) : resolve();
-			})
+			});
 		});
 	}
 

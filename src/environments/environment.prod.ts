@@ -19,11 +19,13 @@ export const environment = {
 
 	cognito_identity_endpoint: '',
 
+	siteRoot: '',
+
 	staticFilesBucket: '',
 
 	staticFilesKeyPrefix: '',
 
-	staticFilesRoot: '',
+	staticFilesRoot: '${this.siteRoot}',
 
 	s3Endpoint: '',
 };

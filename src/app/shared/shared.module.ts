@@ -9,12 +9,12 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SlimLoadingBarModule, SlimLoadingBarService } from 'ng2-slim-loading-bar';
-
 import { SortablejsModule } from 'angular-sortablejs';
 
 import { SPCInterceptor } from './intercept';
 import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
+
+import { NgProgressModule } from 'ngx-progressbar';
 
 @NgModule({
 	imports: [
@@ -22,9 +22,9 @@ import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
 		NgbModule,
 		FormsModule,
 		ReactiveFormsModule,
-		SlimLoadingBarModule.forRoot(),
 		HttpClientModule,
 		SortablejsModule,
+		NgProgressModule,
 	],
 	declarations: [],
 	exports: [
@@ -32,9 +32,9 @@ import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
 		RouterModule,
 		FormsModule,
 		ReactiveFormsModule,
-		SlimLoadingBarModule,
 		HttpClientModule,
 		SortablejsModule,
+		NgProgressModule,
 	],
 	providers: [
 		{
@@ -42,7 +42,6 @@ import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
 			useClass: SPCInterceptor,
 			multi: true,
 		},
-		SlimLoadingBarService,
 		OnlyLoggedInUsersGuard
 	]
 })

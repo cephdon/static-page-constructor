@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { File } from '../../core/static-files.service';
 
 @Component({
 	selector: 'app-file-box',
@@ -6,11 +8,24 @@ import { Component, OnInit, Input } from '@angular/core';
 	styleUrls: ['./file-box.component.css']
 })
 export class FileBoxComponent implements OnInit {
-	@Input() file: any;
+	@Input() file: File;
+
+	@Input() selectFileMode = false;
+
+	@Output() fileSelected = new EventEmitter<File>();
 
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	onClick() {
+		if (this.selectFileMode) {
+			this.fileSelected.emit(this.file);
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
