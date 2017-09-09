@@ -3,28 +3,34 @@
 	<ul 
 		*ngIf="isAuthenticated"
 		class="navbar-nav mr-auto">
-		<li class="nav-item">
-			<a 
-				class="nav-link" 
-				[routerLink]="['/page-constructor']"
-				routerLinkActive="active">
-				Page Constructor
-			</a>
-		</li>
+		<li 
+			class="nav-item dropdown" 
+			ngbDropdown
+			placement="bottom-right">
+			<button
+				ngbDropdownToggle
+				class="nav-link btn btn-link dropdown-toggle">
+				<i class="fa fa-th-large" aria-hidden="true"></i>
+			</button>
 
-		<li class="nav-item">
-			<a 
-				class="nav-link" 
-				[routerLink]="['/static-files']"
-				routerLinkActive="active">
-				Static Files
-			</a>
-		</li>
-	</ul>
+			<div 
+				ngbDropdownMenu
+				class="dropdown-menu" >
+				<a 
+					class="dropdown-item" 
+					routerLink="/page-constructor" 
+					routerLinkActive="active">
+					Page Constructor
+				</a>
 
-	<ul 
-		*ngIf="isAuthenticated"
-		class="navbar-nav">
+				<a 
+					class="dropdown-item" 
+					routerLink="/static-files" 
+					routerLinkActive="active">
+					Static Files
+				</a>
+			</div>
+		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="{{siteUrl}}" target="_blank">
 				<i class="fa fa-external-link" aria-hidden="true"></i>
