@@ -5,9 +5,9 @@ import { WidgetDefinition, WidgetsService } from './../core/widgets.service';
 @Injectable()
 export class WidgetsResolve implements Resolve<WidgetDefinition[]> {
 
-  constructor(private widgetsService: WidgetsService) {}
+	constructor(private widgetsService: WidgetsService) { }
 
-  resolve(route: ActivatedRouteSnapshot) {
-    return this.widgetsService.getWidgets();
-  }
+	resolve(route: ActivatedRouteSnapshot) {
+		return this.widgetsService.getWidgets();
+	}
 }

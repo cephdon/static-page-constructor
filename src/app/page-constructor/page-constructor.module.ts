@@ -22,6 +22,7 @@ import { PagePropsComponent } from './page-edit/page-props/page-props.component'
 import { PropTypeLinkComponent } from './page-edit/prop-types/prop-type-link/prop-type-link.component';
 import { StaticFileModalContentComponent } from './page-edit/prop-types/prop-type-link/static-file-modal-content/static-file-modal-content.component';
 import { PageModalContentComponent } from './page-edit/prop-types/prop-type-link/page-modal-content/page-modal-content.component';
+import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
 
 @NgModule({
 	imports: [
@@ -33,6 +34,7 @@ import { PageModalContentComponent } from './page-edit/prop-types/prop-type-link
 	providers: [
 		PageResolve,
 		WidgetsResolve,
+		SetActiveMenuItemResolve,
 	],
 	declarations: [
 		PageConstructorComponent,

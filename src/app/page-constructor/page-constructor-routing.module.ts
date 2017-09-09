@@ -6,6 +6,7 @@ import { PageEditComponent } from './page-edit/page-edit.component';
 
 import { PageResolve } from './page.resolver';
 import { WidgetsResolve } from './widgets.resolver';
+import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
 
 const routes: Routes = [
 	{
@@ -19,7 +20,10 @@ const routes: Routes = [
 					page: PageResolve
 				}
 			}
-		]
+		],
+		resolve: {
+			menuItem: SetActiveMenuItemResolve
+		}
 	}
 ];
 

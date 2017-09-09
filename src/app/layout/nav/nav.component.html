@@ -11,23 +11,18 @@
 				ngbDropdownToggle
 				class="nav-link btn btn-link dropdown-toggle">
 				<i class="fa fa-th-large" aria-hidden="true"></i>
+				<app-active-menu></app-active-menu>
 			</button>
 
 			<div 
 				ngbDropdownMenu
 				class="dropdown-menu" >
 				<a 
+					*ngFor="let menu of menus"
 					class="dropdown-item" 
-					routerLink="/page-constructor" 
+					[routerLink]="menu.url"
 					routerLinkActive="active">
-					Page Constructor
-				</a>
-
-				<a 
-					class="dropdown-item" 
-					routerLink="/static-files" 
-					routerLinkActive="active">
-					Static Files
+					{{ menu.name }}
 				</a>
 			</div>
 		</li>
@@ -49,7 +44,7 @@
 			<button
 				ngbDropdownToggle
 				class="nav-link btn btn-link dropdown-toggle">
-				{{ email }}
+				<app-user-display-name></app-user-display-name>
 			</button>
 
 			<div 

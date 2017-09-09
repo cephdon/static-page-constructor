@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { UserProfileService } from './../../core/user-profile.service';
 import { LoginService } from './../../core/login.service';
+import { MenuService } from './../../core/menu.service';
 
 import { environment } from "../../../environments/environment";
 
@@ -11,27 +11,23 @@ import { environment } from "../../../environments/environment";
 	styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit, OnDestroy {
-	public email: string;
-	
 	public isAuthenticated: boolean = false;
 	
 	public siteUrl: string = environment.siteRoot;
 
+	public menus: any[] = [];
+
 	private subscription: any;
 
-	constructor(private userProfileService: UserProfileService,
-				private loginService: LoginService) { }
+	constructor(private loginService: LoginService,
+				private menuService: MenuService) { }
 
 	ngOnInit() {
+		this.menus = MenuService.MENUS;
+
 		this.subscription = this.loginService.isAuthenticated.subscribe(is => {
 			this.isAuthenticated = is;
-
-			if (this.isAuthenticated) {
-				this.userProfileService.getProfile().then(attrs => {
-					this.email = attrs.email;
-				});
-			}
-		})
+		});
 	}
 
 	ngOnDestroy() {
