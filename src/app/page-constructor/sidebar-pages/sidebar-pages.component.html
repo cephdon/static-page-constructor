@@ -1,0 +1,22 @@
+<div class="text-muted text-uppercase">
+	<small>Pages</small>
+</div>
+
+<ul class="nav flex-column">
+	<li class="nav-item" *ngFor="let page of pages">
+		<a 
+			class="nav-link" 
+			[routerLink]="['page-edit', page.slug]"
+			routerLinkActive="active">
+			{{ page.name }}
+		</a>
+	</li>
+	<li class="nav-item">
+		<a 
+			class="nav-link"
+			href="javascript:void(0);"
+			(click)="openCreatePageWindow()">
+			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		</a>
+	</li>
+</ul>

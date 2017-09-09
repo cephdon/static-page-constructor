@@ -8,6 +8,7 @@ import { StaticFilesComponent } from './static-files.component';
 import { FileControlComponent } from './file-control/file-control.component';
 import { FileBoxComponent } from './file-box/file-box.component';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
 
 @NgModule({
 	imports: [
@@ -23,6 +24,9 @@ import { SearchInputComponent } from './search-input/search-input.component';
 	],
 	exports: [
 		StaticFilesComponent
+	],
+	providers: [
+		SetActiveMenuItemResolve
 	]
 })
 export class StaticFilesModule { }

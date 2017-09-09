@@ -7,6 +7,8 @@ import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { NarrowComponent } from './narrow/narrow.component';
 import { FooterComponent } from './footer/footer.component';
+import { ActiveMenuComponent } from './nav/active-menu/active-menu.component';
+import { UserDisplayNameComponent } from './nav/user-display-name/user-display-name.component';
 
 @NgModule({
 	imports: [
@@ -17,7 +19,9 @@ import { FooterComponent } from './footer/footer.component';
 		LayoutComponent,
 		NavComponent,
 		NarrowComponent,
-		FooterComponent
+		FooterComponent,
+		ActiveMenuComponent,
+		UserDisplayNameComponent
 	],
 	exports: [
 		LayoutComponent

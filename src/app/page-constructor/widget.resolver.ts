@@ -3,11 +3,11 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { WidgetDefinition, WidgetsService } from './../core/widgets.service';
 
 @Injectable()
-export class WidgetsResolve implements Resolve<WidgetDefinition[]> {
+export class WidgetResolve implements Resolve<WidgetDefinition> {
 
 	constructor(private widgetsService: WidgetsService) { }
 
 	resolve(route: ActivatedRouteSnapshot) {
-		return this.widgetsService.getWidgets();
+		return this.widgetsService.getWidget(route.params.id);
 	}
 }
