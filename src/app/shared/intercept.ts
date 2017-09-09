@@ -5,14 +5,14 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } fr
 
 import { Observable } from 'rxjs';
 
-import { NgProgressService } from 'ngx-progressbar';
-
 import { environment } from './../../environments/environment';
+
+import { UiActivityIndicatorService } from './ui-activity-indicator.service';
 
 @Injectable()
 export class SPCInterceptor implements HttpInterceptor {
 
-	constructor(public progressService: NgProgressService) {}
+	constructor(private uiActivityIndicatorService: UiActivityIndicatorService) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		const dupReq = req.clone({
@@ -22,11 +22,11 @@ export class SPCInterceptor implements HttpInterceptor {
 			}
 		});
 
-		this.progressService.start();
+		this.uiActivityIndicatorService.start();
 
 		return next.handle(dupReq).do(event => {
 			if (event instanceof HttpResponse) {
-				this.progressService.done();
+				this.uiActivityIndicatorService.done();
 			}
 		});
 	}

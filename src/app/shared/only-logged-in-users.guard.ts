@@ -13,16 +13,13 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
 	canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-		return this.loginService.isAuthenticated().then(isAuthenticated => {
-			if (isAuthenticated) {
-				return true;		
-			} else {
+		return this.loginService.isAuthenticated.map(status => {
+			if (!status) {
 				this.router.navigate(['/login']);
 				return false;
 			}
-		}).catch(() => {
-			this.router.navigate(['/login']);
-			return false;
+
+			return true;
 		});
 	}
 }

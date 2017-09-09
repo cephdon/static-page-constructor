@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -6,14 +6,19 @@ import { Router } from '@angular/router';
 
 import { ChangePasswordService } from '../../core/change-password.service';
 
+import { ShakeButtonDirective } from './../../shared/shake-button.directive';
+
 @Component({
 	selector: 'app-set-password',
 	templateUrl: './set-password.component.html',
 	styleUrls: ['./set-password.component.css']
 })
 export class SetPasswordComponent implements OnInit {
+	@ViewChild(ShakeButtonDirective) shakeButton: ShakeButtonDirective;
 
 	public form: FormGroup;
+
+	public submitting: boolean = false;
 
 	constructor(private changePasswordService: ChangePasswordService,
 				private router: Router) { }
@@ -40,11 +45,18 @@ export class SetPasswordComponent implements OnInit {
 			return;
 		}
 
+		this.submitting = true;
+
 		this.changePasswordService.newPassword(
 			this.form.value.email,
 			this.form.value.temppassword,
 			this.form.value.newpassword,
-		);
+		).then(() => {
+			this.router.navigate(['/']);
+		}, () => {
+			this.submitting = false;
+			this.shakeButton.shake();
+		});
 	}
 
 }

@@ -1,7 +1,11 @@
 import * as AWS from "aws-sdk/global";
 import * as STS from "aws-sdk/clients/sts";
 
+import { BehaviorSubject, Observable } from 'rxjs';
+
 import { Injectable } from '@angular/core';
+
+import { UiActivityIndicatorService } from './../shared/ui-activity-indicator.service';
 
 import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 
@@ -13,9 +17,16 @@ import { environment } from "../../environments/environment";
 export class LoginService {
 	public NEW_PASSWORD_REQUIRED: string = 'NEW_PASSWORD_REQUIRED';
 
-	constructor(private cognitoService: CognitoService) { }
+	private isAuthenticatedSubject = new BehaviorSubject<boolean>(true);
 
-	public isAuthenticated(): Promise<boolean> {
+	public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+
+	constructor(private cognitoService: CognitoService,
+				private uiActivityIndicatorService: UiActivityIndicatorService) { 
+		this.getAuthentionStatus()
+	}
+
+	public getAuthentionStatus() {
 		return new Promise((resolve, reject) => {
 			let cognitoUser = this.cognitoService.getCurrentUser();
 
@@ -33,12 +44,19 @@ export class LoginService {
 			} else {
 				resolve(false);
 			}
+		}).then((status: boolean) => {
+			this.isAuthenticatedSubject.next(status);
+			return status;
+		}, (err) => {
+			this.isAuthenticatedSubject.next(false);
+			throw err;
 		});
 	}
 
 	public logout() {
 		const user = this.cognitoService.getCurrentUser();
 		user && user.signOut();
+		this.isAuthenticatedSubject.next(false);
 	}
 
 	public authenticate(username: string, password: string): Promise<any> {
@@ -55,6 +73,8 @@ export class LoginService {
 		};
 
 		let cognitoUser = new CognitoUser(userData);
+
+		this.uiActivityIndicatorService.start();
 
 		return new Promise((resolve, reject) => {
 			cognitoUser.authenticateUser(authenticationDetails, {
@@ -89,6 +109,14 @@ export class LoginService {
 					reject(err.message);
 				},
 			});
+		}).then(x => {
+			this.isAuthenticatedSubject.next(true);
+			this.uiActivityIndicatorService.done();
+			return x;
+		}, x => {
+			this.isAuthenticatedSubject.next(false);
+			this.uiActivityIndicatorService.done();
+			throw x;
 		});
 	}
 }

@@ -15,6 +15,8 @@ import { SPCInterceptor } from './intercept';
 import { OnlyLoggedInUsersGuard } from './only-logged-in-users.guard';
 
 import { NgProgressModule } from 'ngx-progressbar';
+import { UiActivityIndicatorService } from './ui-activity-indicator.service';
+import { ShakeButtonDirective } from './shake-button.directive';
 
 @NgModule({
 	imports: [
@@ -26,7 +28,9 @@ import { NgProgressModule } from 'ngx-progressbar';
 		SortablejsModule,
 		NgProgressModule,
 	],
-	declarations: [],
+	declarations: [
+		ShakeButtonDirective
+	],
 	exports: [
 		NgbModule,
 		RouterModule,
@@ -35,6 +39,7 @@ import { NgProgressModule } from 'ngx-progressbar';
 		HttpClientModule,
 		SortablejsModule,
 		NgProgressModule,
+		ShakeButtonDirective,
 	],
 	providers: [
 		{
@@ -42,7 +47,8 @@ import { NgProgressModule } from 'ngx-progressbar';
 			useClass: SPCInterceptor,
 			multi: true,
 		},
-		OnlyLoggedInUsersGuard
+		OnlyLoggedInUsersGuard,
+		UiActivityIndicatorService,
 	]
 })
 export class SharedModule { }
