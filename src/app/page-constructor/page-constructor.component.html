@@ -1,20 +1,10 @@
 <div class="row">
 	<div class="col-2 sidebar">
-		<ul class="nav flex-column">
-			<li class="nav-item" *ngFor="let page of pages">
-				<a class="nav-link" [routerLink]="['page-edit', page.slug]" routerLinkActive="active">{{ page.name }}</a>
-			</li>
-		</ul>
-
+		<app-sidebar-pages></app-sidebar-pages>
 		<hr>
-
-		<button 
-			type="button" 
-			class="btn btn-link btn-sm text-right"
-			(click)="openCreatePageWindow()">
-			Add
-		</button>
+		<app-sidebar-widgets></app-sidebar-widgets>
 	</div>
+
 	<div class="col-10">
 		<router-outlet></router-outlet>
 	</div>

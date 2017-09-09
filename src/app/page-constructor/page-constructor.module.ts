@@ -11,6 +11,7 @@ import { PageEditComponent } from './page-edit/page-edit.component';
 
 import { PageResolve } from './page.resolver';
 import { WidgetsResolve } from './widgets.resolver';
+import { WidgetResolve } from './widget.resolver';
 
 import { WidgetPlaceholderComponent } from './page-edit/widget-placeholder/widget-placeholder.component';
 import { WidgetPropsModalContentComponent } from './page-edit/widget-props-modal-content/widget-props-modal-content.component';
@@ -23,6 +24,9 @@ import { PropTypeLinkComponent } from './page-edit/prop-types/prop-type-link/pro
 import { StaticFileModalContentComponent } from './page-edit/prop-types/prop-type-link/static-file-modal-content/static-file-modal-content.component';
 import { PageModalContentComponent } from './page-edit/prop-types/prop-type-link/page-modal-content/page-modal-content.component';
 import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
+import { WidgetDefinitionViewComponent } from './widget-definition-view/widget-definition-view.component';
+import { SidebarPagesComponent } from './sidebar-pages/sidebar-pages.component';
+import { SidebarWidgetsComponent } from './sidebar-widgets/sidebar-widgets.component';
 
 @NgModule({
 	imports: [
@@ -34,6 +38,7 @@ import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
 	providers: [
 		PageResolve,
 		WidgetsResolve,
+		WidgetResolve,
 		SetActiveMenuItemResolve,
 	],
 	declarations: [
@@ -49,6 +54,9 @@ import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
 		PropTypeLinkComponent,
 		StaticFileModalContentComponent,
 		PageModalContentComponent,
+		WidgetDefinitionViewComponent,
+		SidebarPagesComponent,
+		SidebarWidgetsComponent,
 	],
 	entryComponents: [
 		WidgetPropsModalContentComponent,

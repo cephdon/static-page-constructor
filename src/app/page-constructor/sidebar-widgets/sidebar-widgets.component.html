@@ -1,0 +1,14 @@
+<div class="text-muted text-uppercase">
+	<small>Widgets</small>
+</div>
+
+<ul class="nav flex-column">
+	<li class="nav-item" *ngFor="let widget of widgets">
+		<a 
+			class="nav-link"
+			[routerLink]="['widget-definition-view', widget.slug]"
+			routerLinkActive="active">
+			{{ widget.name }}
+		</a>
+	</li>
+</ul>
