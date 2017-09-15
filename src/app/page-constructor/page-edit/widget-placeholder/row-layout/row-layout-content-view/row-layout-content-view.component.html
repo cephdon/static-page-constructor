@@ -4,11 +4,10 @@
 		*ngFor="let area of widgetDefinition.layout.areas">
 
 		<app-widget-placeholder
-			*ngFor="let wconf of widgetConfiguration.areas[area.slug]; let i = index"
+			*ngFor="let wconf of widgetConfiguration.areas[area.slug]"
 			[structuralView]="false"
 			[widgetConfiguration]="wconf"
-			[page]="page"
-			[index]="i">
+			[page]="page">
 		</app-widget-placeholder>
 
 	</div>

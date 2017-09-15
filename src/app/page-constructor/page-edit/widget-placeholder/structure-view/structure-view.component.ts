@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { WidgetDefinition, WidgetConfiguration } from './../../../../core/widgets.service';
 
-import { Page } from './../../../../core/pages.service';
+import { Page, PagesService } from './../../../../core/pages.service';
+import { AddWidgetService } from './../../add-widget.service';
 
 @Component({
 	selector: 'app-structure-view',
@@ -17,21 +18,21 @@ export class StructureViewComponent implements OnInit {
 
 	@Input() page: Page;
 
-	@Output() edit = new EventEmitter<void>();
-
-	@Output() delete = new EventEmitter<void>();
-
-	constructor() { }
+	constructor(private addWidgetService: AddWidgetService,
+				private pagesService: PagesService) { }
 
 	ngOnInit() {
 	}
 
-	editClick() {
-		this.edit.emit();
+	public edit() {
+		this.addWidgetService.openEditWidgetWindow(this.widgetDefinition, this.widgetConfiguration);
 	}
 
-	deleteClick() {
-		this.delete.emit();
+	public delete() {
+		this.pagesService.removeWidget(
+			this.page, 
+			this.widgetConfiguration
+		);
 	}
 
 }

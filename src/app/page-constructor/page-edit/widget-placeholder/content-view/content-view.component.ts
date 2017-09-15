@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { WidgetDefinition, WidgetConfiguration } from './../../../../core/widgets.service';
 
 import { Page } from './../../../../core/pages.service';
+import { AddWidgetService } from './../../add-widget.service';
 
 @Component({
 	selector: 'app-content-view',
@@ -17,14 +18,12 @@ export class ContentViewComponent implements OnInit {
 
 	@Input() page: Page;
 
-	@Output() edit = new EventEmitter<void>();
-
-	constructor() { }
+	constructor(private addWidgetService: AddWidgetService) { }
 
 	ngOnInit() {
 	}
 
-	editClick() {
-		this.edit.emit();
+	public edit() {
+		this.addWidgetService.openEditWidgetWindow(this.widgetDefinition, this.widgetConfiguration);
 	}
 }

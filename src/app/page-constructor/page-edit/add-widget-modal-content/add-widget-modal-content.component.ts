@@ -30,7 +30,7 @@ export class AddWidgetModalContentComponent implements OnInit {
 		this.widgetsService.getWidgetDefinition(this.form.value.widgetType.slug)
 			.then((widgetDefinition: WidgetDefinition) => {
 				const widgetConfiguration: WidgetConfiguration = this.widgetsService
-					.instantiateWidgetDefinition(widgetDefinition);
+					.instantiateWidgetFromDefinition(widgetDefinition);
 
 				this.activeModal.close(widgetConfiguration);
 			});

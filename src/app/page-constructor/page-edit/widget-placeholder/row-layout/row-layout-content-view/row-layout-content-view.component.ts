@@ -16,15 +16,9 @@ export class RowLayoutContentViewComponent implements OnInit {
 
 	@Input() page: Page;
 
-	@Output() edit = new EventEmitter<void>();
-
 	constructor() { }
 
 	ngOnInit() {
-	}
-
-	editClick() {
-		this.edit.emit();
 	}
 
 }

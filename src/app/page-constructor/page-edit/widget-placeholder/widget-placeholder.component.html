@@ -7,18 +7,14 @@
 			*ngSwitchCase="'row'"
 			[widgetDefinition]="widgetDefinition"
 			[widgetConfiguration]="widgetConfiguration"
-			[page]="page"
-			(edit)="openWidgetPropsWindow()"
-			(delete)="removeWidget($event)">
+			[page]="page">
 		</app-row-layout-structure-view>
 
 		<app-structure-view
 			*ngSwitchDefault
 			[widgetDefinition]="widgetDefinition"
 			[widgetConfiguration]="widgetConfiguration"
-			[page]="page"
-			(edit)="openWidgetPropsWindow()"
-			(delete)="removeWidget($event)">
+			[page]="page">
 		</app-structure-view>
 
 	</div>
@@ -31,16 +27,14 @@
 			*ngSwitchCase="'row'"
 			[widgetDefinition]="widgetDefinition"
 			[widgetConfiguration]="widgetConfiguration"
-			[page]="page"
-			(edit)="openWidgetPropsWindow()">
+			[page]="page">
 		</app-row-layout-content-view>
 
 		<app-content-view 
 			*ngSwitchDefault
 			[widgetDefinition]="widgetDefinition"
 			[widgetConfiguration]="widgetConfiguration"
-			[page]="page"
-			(edit)="openWidgetPropsWindow()">
+			[page]="page">
 		</app-content-view>
 
 	</div>

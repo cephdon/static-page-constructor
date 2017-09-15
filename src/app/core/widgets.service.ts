@@ -34,7 +34,7 @@ class WidgetsService {
 			.then(data => new WidgetDefinition(data));
 	}
 
-	instantiateWidgetDefinition(widgetDefinition: WidgetDefinition): WidgetConfiguration {
+	instantiateWidgetFromDefinition(widgetDefinition: WidgetDefinition): WidgetConfiguration {
 		let areas;
 
 		switch (widgetDefinition.layout.type) {

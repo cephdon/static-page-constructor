@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { WidgetDefinition, WidgetConfiguration } from './../../../../../core/widgets.service';
 import { Page } from './../../../../../core/pages.service';
-
 import { AddWidgetService } from './../../../add-widget.service';
 
 @Component({
@@ -18,24 +17,12 @@ export class RowLayoutStructureViewComponent implements OnInit {
 
 	@Input() page: Page;
 
-	@Output() edit = new EventEmitter<void>();
-
-	@Output() delete = new EventEmitter<void>();
-
 	constructor(private addWidgetService: AddWidgetService) { }
 
 	ngOnInit() {
 	}
 
-	editClick() {
-		this.edit.emit();
-	}
-
-	deleteClick() {
-		this.delete.emit();
-	}
-
-	widgetClick(area) {
+	public addWidget(area) {
 		this.addWidgetService.openCreateWidgetWindowForArea(
 			area, 
 			this.widgetConfiguration
