@@ -10,6 +10,7 @@ import { PageConstructorComponent } from './page-constructor.component';
 import { PageEditComponent } from './page-edit/page-edit.component';
 
 import { PageResolve } from './page.resolver';
+import { PagesResolve } from './pages.resolver';
 import { WidgetsResolve } from './widgets.resolver';
 import { WidgetResolve } from './widget.resolver';
 
@@ -27,6 +28,12 @@ import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
 import { WidgetDefinitionViewComponent } from './widget-definition-view/widget-definition-view.component';
 import { SidebarPagesComponent } from './sidebar-pages/sidebar-pages.component';
 import { SidebarWidgetsComponent } from './sidebar-widgets/sidebar-widgets.component';
+import { StructureViewComponent } from './page-edit/widget-placeholder/structure-view/structure-view.component';
+import { ContentViewComponent } from './page-edit/widget-placeholder/content-view/content-view.component';
+import { RowLayoutStructureViewComponent } from './page-edit/widget-placeholder/row-layout/row-layout-structure-view/row-layout-structure-view.component';
+import { RowLayoutContentViewComponent } from './page-edit/widget-placeholder/row-layout/row-layout-content-view/row-layout-content-view.component';
+
+import { AddWidgetService } from './page-edit/add-widget.service';
 
 @NgModule({
 	imports: [
@@ -37,9 +44,11 @@ import { SidebarWidgetsComponent } from './sidebar-widgets/sidebar-widgets.compo
 	],
 	providers: [
 		PageResolve,
+		PagesResolve,
 		WidgetsResolve,
 		WidgetResolve,
 		SetActiveMenuItemResolve,
+		AddWidgetService,
 	],
 	declarations: [
 		PageConstructorComponent,
@@ -57,6 +66,10 @@ import { SidebarWidgetsComponent } from './sidebar-widgets/sidebar-widgets.compo
 		WidgetDefinitionViewComponent,
 		SidebarPagesComponent,
 		SidebarWidgetsComponent,
+		StructureViewComponent,
+		ContentViewComponent,
+		RowLayoutStructureViewComponent,
+		RowLayoutContentViewComponent,
 	],
 	entryComponents: [
 		WidgetPropsModalContentComponent,

@@ -1,35 +1,45 @@
-<div 
-	*ngIf="structuralView"
-	(dblclick)="openWidgetPropsWindow()"
-	class="widget-placeholder structural-view">
-	{{ widgetDefinition?.name }}
+<div *ngIf="widgetDefinition">
+	<div
+		[hidden]="!structuralView"
+		[ngSwitch]="widgetDefinition.layout.type">
 
-	<span *ngIf="!loaded" class="loader">
-		Loading...
-	</span>
+		<app-row-layout-structure-view
+			*ngSwitchCase="'row'"
+			[widgetDefinition]="widgetDefinition"
+			[widgetConfiguration]="widgetConfiguration"
+			[page]="page">
+		</app-row-layout-structure-view>
 
-	<div class="float-right">
-		<button class="btn btn-link btn-sm" (click)="openWidgetPropsWindow()">
-			Edit
-		</button>
+		<app-structure-view
+			*ngSwitchDefault
+			[widgetDefinition]="widgetDefinition"
+			[widgetConfiguration]="widgetConfiguration"
+			[page]="page">
+		</app-structure-view>
 
-		<button class="btn btn-link btn-sm text-danger" (click)="removeWidget()">
-			<i class="fa fa-trash" aria-hidden="true"></i>
-		</button>
+	</div>
+
+	<div 
+		[hidden]="structuralView"
+		[ngSwitch]="widgetDefinition.layout.type">
+
+		<app-row-layout-content-view
+			*ngSwitchCase="'row'"
+			[widgetDefinition]="widgetDefinition"
+			[widgetConfiguration]="widgetConfiguration"
+			[page]="page">
+		</app-row-layout-content-view>
+
+		<app-content-view 
+			*ngSwitchDefault
+			[widgetDefinition]="widgetDefinition"
+			[widgetConfiguration]="widgetConfiguration"
+			[page]="page">
+		</app-content-view>
+
 	</div>
 </div>
 
-<div 
-	*ngIf="!structuralView" 
-	class="widget-placeholder content-view">
-
-	<img 
-		*ngIf="loaded" 
-		[src]="widgetDefinition.previewImage"
-		(dblclick)="openWidgetPropsWindow()">
-
-	<span *ngIf="!loaded" class="loader">
-		Loading...
-	</span>
-
+<div *ngIf="!widgetDefinition">
+	Loading...
 </div>

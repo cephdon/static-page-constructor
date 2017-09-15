@@ -1,0 +1,11 @@
+.widget-placeholder.content-view {
+	border: 2px dashed transparent;
+}
+
+.widget-placeholder.content-view:hover {
+	border: 2px dashed green;
+}
+
+.widget-placeholder.content-view img {
+	max-width: 100%;
+}

@@ -64,16 +64,12 @@
 
 <div class="tab-content">
 	<div class="tab-pane show active" [hidden]="view == 'pageProps'">
-		<div 
-			[ngClass]="{'list-group': view == 'structure'}"
-			[sortablejs]="page.configuration">
+		<div [sortablejs]="page.configuration">
 			<app-widget-placeholder
-				*ngFor="let widget of page.configuration; let i = index"
+				*ngFor="let widget of page.configuration"
 				[structuralView]="view == 'structure'"
 				[widgetConfiguration]="widget"
-				[page]="page"
-				[index]="i"
-				[ngClass]="{'list-group-item': view == 'structure'}">
+				[page]="page">
 			</app-widget-placeholder>
 		</div>
 	</div>

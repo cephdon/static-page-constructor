@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { PagesService, Page } from './../../core/pages.service';
 
@@ -11,7 +11,7 @@ import { AddPageModalContentComponent } from './../page-edit/add-page-modal-cont
 	templateUrl: './sidebar-pages.component.html',
 	styleUrls: ['./sidebar-pages.component.css']
 })
-export class SidebarPagesComponent implements OnInit {
+export class SidebarPagesComponent implements OnInit, OnDestroy {
 	pages: Page[] = [];
 
 	subscription: any;
@@ -20,23 +20,16 @@ export class SidebarPagesComponent implements OnInit {
 				private modalService: NgbModal) { }
 
 	ngOnInit() {
-		this.getPages();
-
-		this.subscription = this.pagesService.pageEdited$.subscribe(() => {
-			this.getPages();
-		});
+		this.subscription = this.pagesService.pages.subscribe(pages =>
+			this.pages = pages);
 	}
 
-	getPages() {
-		this.pagesService.getPages().then(pages => this.pages = pages);
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	openCreatePageWindow() {
 		const ref = this.modalService.open(AddPageModalContentComponent);
-
-		ref.result.then((page: Page) => {
-			this.getPages();
-		}).catch(() => {});
 	}
 
 }

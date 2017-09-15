@@ -1,0 +1,27 @@
+<app-structure-view
+	[widgetDefinition]="widgetDefinition"
+	[widgetConfiguration]="widgetConfiguration"
+	[page]="page"
+	[hasChildren]="true">
+</app-structure-view>
+
+<div 
+	*ngFor="let area of widgetDefinition.layout.areas" 
+	class="pt-1 pl-2" 
+	style="border-left: 1px solid rgba(0, 0, 0, 0.1);">
+	<div>
+		<small class="text-muted text-uppercase">{{ area.desc }}</small>
+
+		<button class="btn btn-link btn-sm" (click)="addWidget(area)">
+			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		</button>
+	</div>
+	<div class="pl-2">
+		<app-widget-placeholder
+			*ngFor="let wconf of widgetConfiguration.areas[area.slug]"
+			[structuralView]="true"
+			[widgetConfiguration]="wconf"
+			[page]="page">
+		</app-widget-placeholder>
+	</div>
+</div>

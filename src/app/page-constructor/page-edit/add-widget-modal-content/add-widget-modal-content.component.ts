@@ -27,12 +27,13 @@ export class AddWidgetModalContentComponent implements OnInit {
 			return;
 		}
 
-		const widgetDefinition: WidgetDefinition = this.form.value.widgetType;
+		this.widgetsService.getWidgetDefinition(this.form.value.widgetType.slug)
+			.then((widgetDefinition: WidgetDefinition) => {
+				const widgetConfiguration: WidgetConfiguration = this.widgetsService
+					.instantiateWidgetFromDefinition(widgetDefinition);
 
-		const widgetConfiguration: WidgetConfiguration = this.widgetsService
-			.instantiateWidgetDefinition(widgetDefinition);
-
-		this.activeModal.close(widgetConfiguration);
+				this.activeModal.close(widgetConfiguration);
+			});
 	}
 
 }

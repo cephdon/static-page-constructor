@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,9 +11,11 @@ import { Page, PagesService } from './../../../../../core/pages.service';
 	templateUrl: './page-modal-content.component.html',
 	styleUrls: ['./page-modal-content.component.css']
 })
-export class PageModalContentComponent implements OnInit {
+export class PageModalContentComponent implements OnInit, OnDestroy {
 	public form: FormGroup;
 	public pages: Page[] = [];
+
+	private subs: any;
 
 	constructor(public activeModal: NgbActiveModal,
 				private pagesService: PagesService) { }
@@ -23,7 +25,12 @@ export class PageModalContentComponent implements OnInit {
 
 		this.form.addControl('page', new FormControl('', Validators.required));
 
-		this.pagesService.getPages().then(pages => this.pages = pages);
+		this.subs =  this.pagesService.pages.subscribe(pages => 
+			this.pages = pages);
+	}
+
+	ngOnDestroy() {
+		this.subs.unsubscribe();
 	}
 
 	public onSubmit() {

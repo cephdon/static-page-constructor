@@ -27,7 +27,7 @@ import { MenuService } from './menu.service';
 		S3Service,
 		StaticFilesService,
 		AwsCredentialsService,
-		MenuService
+		MenuService,
 	]
 })
 export class CoreModule { }

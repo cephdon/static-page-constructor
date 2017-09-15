@@ -8,6 +8,6 @@ export class WidgetsResolve implements Resolve<WidgetDefinition[]> {
 	constructor(private widgetsService: WidgetsService) { }
 
 	resolve(route: ActivatedRouteSnapshot) {
-		return this.widgetsService.getWidgets();
+		return this.widgetsService.loadWidgetDefinitions();
 	}
 }

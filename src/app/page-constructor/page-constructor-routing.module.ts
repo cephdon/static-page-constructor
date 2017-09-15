@@ -6,6 +6,7 @@ import { PageEditComponent } from './page-edit/page-edit.component';
 import { WidgetDefinitionViewComponent } from './widget-definition-view/widget-definition-view.component';
 
 import { PageResolve } from './page.resolver';
+import { PagesResolve } from './pages.resolver';
 import { WidgetResolve } from './widget.resolver';
 import { WidgetsResolve } from './widgets.resolver';
 import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
@@ -31,7 +32,9 @@ const routes: Routes = [
 			}
 		],
 		resolve: {
-			menuItem: SetActiveMenuItemResolve
+			menuItem: SetActiveMenuItemResolve,
+			pages: PagesResolve,
+			widgets: WidgetsResolve
 		}
 	}
 ];
