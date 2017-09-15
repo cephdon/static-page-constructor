@@ -43,6 +43,7 @@ class WidgetsService {
 					acc[area.slug] = [];
 					return acc;
 				}, {});
+				break;
 			default:
 				areas = {};
 				break;

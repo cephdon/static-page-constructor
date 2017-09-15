@@ -25,6 +25,7 @@ class AddWidgetService {
 		const ref = this.modalService.open(AddWidgetModalContentComponent);
 
 		ref.result.then((wcon:WidgetConfiguration) => {
+			debugger
 			widgetConfiguration.addWidgetForArea(area, wcon);
 		}).catch(() => {});
 	}
