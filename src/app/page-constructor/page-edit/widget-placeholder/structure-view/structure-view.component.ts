@@ -18,6 +18,8 @@ export class StructureViewComponent implements OnInit {
 
 	@Input() page: Page;
 
+	@Input() hasChildren: boolean = false;
+
 	constructor(private addWidgetService: AddWidgetService,
 				private pagesService: PagesService) { }
 

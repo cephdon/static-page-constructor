@@ -1,5 +1,8 @@
 <div (dblclick)="editClick()" class="widget-placeholder structural-view">
-	{{ widgetDefinition.name }}
+	<i class="fa fa-circle text-muted" *ngIf="!hasChildren"></i>
+	<i class="fa fa-long-arrow-down text-muted" *ngIf="hasChildren"></i>
+
+	<span>{{ widgetDefinition.name }}</span>
 
 	<div class="d-inline">
 		<button class="btn btn-link btn-sm" (click)="edit()">
