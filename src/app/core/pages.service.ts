@@ -52,8 +52,23 @@ class PagesService {
 	}
 
 	removeWidget(page: Page, widgetConfiguration: WidgetConfiguration) {
-		page.configuration = page.configuration
-			.filter(c => c.id !== widgetConfiguration.id);
+
+		//todo: make it more optimal
+		const inner = (configuration: any[]) => {
+			configuration.forEach((c, i) => {
+				if (c.id === widgetConfiguration.id) {
+					configuration.splice(i, 1);
+
+					return false;
+				} else if (c.areas) {
+					Object.keys(c.areas).forEach(key => {
+						inner(c.areas[key]);
+					});
+				}
+			});
+		};
+
+		inner(page.configuration);
 
 		this.widgetConfigurationRemoved.next(widgetConfiguration);
 	}
