@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -9,25 +9,29 @@ import { WidgetsService, WidgetDefinition } from './../../../core/widgets.servic
 	templateUrl: './widget-selector.component.html',
 	styleUrls: ['./widget-selector.component.css']
 })
-export class WidgetSelectorComponent implements OnInit {
+export class WidgetSelectorComponent implements OnInit, OnDestroy {
 
 	@Input() form: FormGroup;
 
 	public widgets: WidgetDefinition[];
 
+	private subs: any;
+
 	constructor(private widgetsService: WidgetsService) { }
 
 	ngOnInit() {
 		this.addFormControls();
-		this.getWidgets();
+		
+		this.subs = this.widgetsService.widgets.subscribe(widgets => 
+			this.widgets = widgets);
+	}
+
+	ngOnDestroy() {
+		this.subs.unsubscribe();
 	}
 
 	addFormControls() {
 		this.form.addControl('widgetType', new FormControl('', Validators.required));
-	}
-
-	getWidgets(): Promise<WidgetDefinition[]> {
-		return this.widgetsService.getWidgets().then(widgets => this.widgets = widgets);
 	}
 
 }

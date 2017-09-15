@@ -10,7 +10,7 @@ export class Page {
 	constructor(data: {name: string, slug: string, configuration: WidgetConfiguration[]}) {
 		this.name = data.name;
 		this.slug = data.slug;
-		this.configuration = data.configuration;
+		this.configuration = (data.configuration || []).map(c => new WidgetConfiguration(c));
 	}
 
 	get url(): string {

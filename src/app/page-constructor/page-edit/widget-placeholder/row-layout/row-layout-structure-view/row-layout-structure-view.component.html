@@ -1,0 +1,33 @@
+<div>
+	{{ widgetDefinition.name }}
+
+	<div class="float-right">
+		<button class="btn btn-link btn-sm" (click)="editClick()">
+			Edit
+		</button>
+
+		<button class="btn btn-link btn-sm text-danger" (click)="deleteClick()">
+			<i class="fa fa-trash" aria-hidden="true"></i>
+		</button>
+	</div>
+</div>
+
+<div 
+	*ngFor="let area of widgetDefinition.layout.areas"
+	class="pt-3">
+	<div>
+		<small class="text-muted text-uppercase">{{ area.desc }}</small>
+
+		<button class="btn btn-link btn-sm" (click)="widgetClick(area)">
+			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		</button>
+	</div>
+
+	<app-widget-placeholder
+		*ngFor="let wconf of widgetConfiguration.areas[area.slug]; let i = index"
+		[structuralView]="true"
+		[widgetConfiguration]="wconf"
+		[page]="page"
+		[index]="i">
+	</app-widget-placeholder>
+</div>

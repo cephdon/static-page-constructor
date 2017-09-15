@@ -24,29 +24,14 @@ export class WidgetPlaceholderComponent implements OnInit {
 
 	public widgetDefinition: WidgetDefinition;
 
-	public loaded: boolean = false;
-
 	constructor(
 			private widgetsService: WidgetsService,
 			private modalService: NgbModal,
 			private pagesService: PagesService) { }
 
 	ngOnInit() {
-		this.getWidgetDefinition()
-			.then(def => this.widgetDefinition = def);
-	}
-
-	private getWidgetDefinition(): Promise<WidgetDefinition> {
-		this.loaded = false;
-
-		return this.widgetsService
-			.getWidget(this.widgetConfiguration.widget)
-			.then(widget => {
-				this.loaded = true;
-				return widget;
-			}).catch(() => {
-				this.loaded = true;
-			});
+		this.widgetsService.getWidgetDefinition(this.widgetConfiguration.widget)
+			.then(wd => this.widgetDefinition = wd);
 	}
 
 	public openWidgetPropsWindow() {
@@ -60,10 +45,10 @@ export class WidgetPlaceholderComponent implements OnInit {
 		}).catch(() => {});
 	}
 
-	public removeWidget() {
+	public removeWidget(widgetConfiguration) {
 		this.pagesService.removeWidget(
 			this.page, 
-			this.widgetConfiguration
+			widgetConfiguration ? widgetConfiguration : this.widgetConfiguration
 		);
 	}
 }

@@ -1,0 +1,13 @@
+<div (dblclick)="editClick()" class="widget-placeholder structural-view">
+	{{ widgetDefinition.name }}
+
+	<div class="float-right">
+		<button class="btn btn-link btn-sm" (click)="editClick()">
+			Edit
+		</button>
+
+		<button class="btn btn-link btn-sm text-danger" (click)="deleteClick()">
+			<i class="fa fa-trash" aria-hidden="true"></i>
+		</button>
+	</div>
+</div>

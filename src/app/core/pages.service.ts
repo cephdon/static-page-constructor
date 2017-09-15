@@ -2,8 +2,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject, Subject, Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -15,14 +14,24 @@ class PagesService {
 	private widgetConfigurationRemoved = new Subject<WidgetConfiguration>();
 	private pageEdited = new Subject<Page>();
 
+	private _pages: Page[];
+	private pagesSubject = new ReplaySubject<Page[]>();
+
+	public pages = this.pagesSubject.asObservable();
+
 	widgetConfigurationRemoved$ = this.widgetConfigurationRemoved.asObservable();	
 	pageEdited$ = this.pageEdited.asObservable();	
 
 	constructor(private httpClient: HttpClient) { }
 
-	getPages(): Promise<Page[]> {
+	loadPages(): Promise<Page[]> {
 		return this.httpClient.get<Page[]>('/ListPages').toPromise()
-			.then(pages => pages.map(page => new Page(page)));
+			.then(pages => pages.map(page => new Page(page)))
+			.then(pages => {
+				this._pages = pages;
+				this.pagesSubject.next(this._pages);
+				return pages;
+			});
 	}
 
 	getPage(slug: string): Promise<Page> {
@@ -30,9 +39,10 @@ class PagesService {
 			.then(page => new Page(page));
 	}
 
-	save(page: Page): Promise<any> {
+	save(page: Page): Promise<Page> {
 		return this.httpClient.post(`/SavePage`, page).toPromise().then((page: Page) => {
 			this.pageEdited.next(page);
+			this.loadPages();
 			return page;
 		})
 	}
@@ -53,23 +63,7 @@ class PagesService {
 	}
 }
 
-@Injectable()
-class CurrentPageService {
-	_page: Page;
-
-	constructor() { }
-
-	public get page() : Page {
-		return this._page;
-	}
-
-	public set page(v : Page) {
-		this.page = v;
-	}
-}
-
 export {
 	Page,
 	PagesService,
-	CurrentPageService
 }
