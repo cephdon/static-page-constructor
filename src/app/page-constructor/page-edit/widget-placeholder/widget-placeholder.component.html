@@ -1,6 +1,6 @@
 <div *ngIf="widgetDefinition">
 	<div
-		*ngIf="structuralView"
+		[hidden]="!structuralView"
 		[ngSwitch]="widgetDefinition.layout.type">
 
 		<app-row-layout-structure-view
@@ -20,7 +20,7 @@
 	</div>
 
 	<div 
-		*ngIf="!structuralView"
+		[hidden]="structuralView"
 		[ngSwitch]="widgetDefinition.layout.type">
 
 		<app-row-layout-content-view
