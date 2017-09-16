@@ -13,6 +13,8 @@ import { PageResolve } from './page.resolver';
 import { PagesResolve } from './pages.resolver';
 import { WidgetsResolve } from './widgets.resolver';
 import { WidgetResolve } from './widget.resolver';
+import { PageTemplatesResolve } from './page-templates.resolver';
+import { PageTemplateResolve } from './page-template.resolver';
 
 import { WidgetPlaceholderComponent } from './page-edit/widget-placeholder/widget-placeholder.component';
 import { WidgetPropsModalContentComponent } from './page-edit/widget-props-modal-content/widget-props-modal-content.component';
@@ -34,6 +36,8 @@ import { RowLayoutStructureViewComponent } from './page-edit/widget-placeholder/
 import { RowLayoutContentViewComponent } from './page-edit/widget-placeholder/row-layout/row-layout-content-view/row-layout-content-view.component';
 
 import { AddWidgetService } from './page-edit/add-widget.service';
+import { SidebarPageTemplatesComponent } from './sidebar-page-templates/sidebar-page-templates.component';
+import { PageTemplateViewComponent } from './page-template-view/page-template-view.component';
 
 @NgModule({
 	imports: [
@@ -48,6 +52,8 @@ import { AddWidgetService } from './page-edit/add-widget.service';
 		WidgetsResolve,
 		WidgetResolve,
 		SetActiveMenuItemResolve,
+		PageTemplatesResolve,
+		PageTemplateResolve,
 		AddWidgetService,
 	],
 	declarations: [
@@ -70,6 +76,8 @@ import { AddWidgetService } from './page-edit/add-widget.service';
 		ContentViewComponent,
 		RowLayoutStructureViewComponent,
 		RowLayoutContentViewComponent,
+		SidebarPageTemplatesComponent,
+		PageTemplateViewComponent,
 	],
 	entryComponents: [
 		WidgetPropsModalContentComponent,

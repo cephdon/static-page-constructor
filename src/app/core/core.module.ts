@@ -11,6 +11,7 @@ import { S3Service } from './s3.service';
 import { StaticFilesService } from './static-files.service';
 import { AwsCredentialsService } from './aws-credentials.service';
 import { MenuService } from './menu.service';
+import { PageTemplatesService } from './page-templates.service';
 
 @NgModule({
 	imports: [
@@ -28,6 +29,7 @@ import { MenuService } from './menu.service';
 		StaticFilesService,
 		AwsCredentialsService,
 		MenuService,
+		PageTemplatesService,
 	]
 })
 export class CoreModule { }
