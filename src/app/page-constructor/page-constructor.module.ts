@@ -36,6 +36,8 @@ import { RowLayoutStructureViewComponent } from './page-edit/widget-placeholder/
 import { RowLayoutContentViewComponent } from './page-edit/widget-placeholder/row-layout/row-layout-content-view/row-layout-content-view.component';
 
 import { AddWidgetService } from './page-edit/add-widget.service';
+import { SidebarPageTemplatesComponent } from './sidebar-page-templates/sidebar-page-templates.component';
+import { PageTemplateViewComponent } from './page-template-view/page-template-view.component';
 
 @NgModule({
 	imports: [
@@ -74,6 +76,8 @@ import { AddWidgetService } from './page-edit/add-widget.service';
 		ContentViewComponent,
 		RowLayoutStructureViewComponent,
 		RowLayoutContentViewComponent,
+		SidebarPageTemplatesComponent,
+		PageTemplateViewComponent,
 	],
 	entryComponents: [
 		WidgetPropsModalContentComponent,

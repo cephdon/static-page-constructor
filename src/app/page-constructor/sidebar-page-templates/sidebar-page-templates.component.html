@@ -1,0 +1,14 @@
+<div class="text-muted text-uppercase">
+	<small>Page Templates</small>
+</div>
+
+<ul class="nav flex-column">
+	<li class="nav-item" *ngFor="let pt of pageTemplates">
+		<a 
+			class="nav-link"
+			[routerLink]="['page-template-view', pt.slug]"
+			routerLinkActive="active">
+			{{ pt.name }}
+		</a>
+	</li>
+</ul>
