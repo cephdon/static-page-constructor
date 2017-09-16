@@ -13,6 +13,8 @@ import { PageResolve } from './page.resolver';
 import { PagesResolve } from './pages.resolver';
 import { WidgetsResolve } from './widgets.resolver';
 import { WidgetResolve } from './widget.resolver';
+import { PageTemplatesResolve } from './page-templates.resolver';
+import { PageTemplateResolve } from './page-template.resolver';
 
 import { WidgetPlaceholderComponent } from './page-edit/widget-placeholder/widget-placeholder.component';
 import { WidgetPropsModalContentComponent } from './page-edit/widget-props-modal-content/widget-props-modal-content.component';
@@ -48,6 +50,8 @@ import { AddWidgetService } from './page-edit/add-widget.service';
 		WidgetsResolve,
 		WidgetResolve,
 		SetActiveMenuItemResolve,
+		PageTemplatesResolve,
+		PageTemplateResolve,
 		AddWidgetService,
 	],
 	declarations: [

@@ -10,6 +10,8 @@ import { PagesResolve } from './pages.resolver';
 import { WidgetResolve } from './widget.resolver';
 import { WidgetsResolve } from './widgets.resolver';
 import { SetActiveMenuItemResolve } from './set-active-menu-item.resolver';
+import { PageTemplatesResolve } from './page-templates.resolver';
+import { PageTemplateResolve } from './page-template.resolver';
 
 const routes: Routes = [
 	{
@@ -34,7 +36,8 @@ const routes: Routes = [
 		resolve: {
 			menuItem: SetActiveMenuItemResolve,
 			pages: PagesResolve,
-			widgets: WidgetsResolve
+			widgets: WidgetsResolve,
+			pageTemplates: PageTemplatesResolve
 		}
 	}
 ];
