@@ -1,11 +1,5 @@
 # Static Page Constructor
 
-Static Files Serverless CMS.
+Static Page Constructor is a serverless CMS that generates static sites. It basically operates similat to jekyll, except you dont need to change source code, instead you create/edit widgets.
 
-![](https://s3.eu-central-1.amazonaws.com/japanesevedro/1*bFdhu-99LRM6wVrWR6wLQw.png)
-
-Please read the following medium article for more details https://read.korzh.cloud/reinventing-static-sites-with-aws-e2c30daada46
-
-## Demo
-
-http://static-page-constructor.s3-website-eu-west-1.amazonaws.com/
+Checkout project [wiki](https://github.com/pkorzh/static-page-constructor/wiki) page for more details.
