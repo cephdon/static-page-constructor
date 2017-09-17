@@ -66,6 +66,7 @@
 	<div class="tab-pane show active" [hidden]="view == 'pageProps'">
 		<div [sortablejs]="page.configuration">
 			<app-widget-placeholder
+				style="display: block;"
 				*ngFor="let widget of page.configuration"
 				[structuralView]="view == 'structure'"
 				[widgetConfiguration]="widget"
