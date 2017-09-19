@@ -1,4 +1,4 @@
-![https://s3.eu-central-1.amazonaws.com/japanesevedro/1-P0exI3QQHPp6m-pP528Kww.png](Static Page Constructor Logo)
+![Static Page Constructor Logo](https://s3.eu-central-1.amazonaws.com/japanesevedro/1-P0exI3QQHPp6m-pP528Kww.png)
 
 # Static Page Constructor
 
