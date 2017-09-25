@@ -2,5 +2,3 @@ theme: jekyll-theme-cayman
 
 title: "Static Page Constructor CMS"
 description: "Static Page Constructor is a serverless CMS that generates static sites. It operates similar to jekyll, except you don't need to change source code, instead you create/edit widgets"
-
-show_downloads: true
