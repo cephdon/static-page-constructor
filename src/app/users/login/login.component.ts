@@ -26,9 +26,8 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		this.form = new FormGroup({});
 
-		this.form.addControl('email', new FormControl('', [
-			Validators.required, 
-			Validators.email
+		this.form.addControl('username', new FormControl('', [
+			Validators.required,
 		]));
 
 		this.form.addControl('password', new FormControl('', [
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
 
 		this.submitting = true;
 
-		this.loginService.authenticate(this.form.value.email, this.form.value.password).then(() => {
+		this.loginService.authenticate(this.form.value.username, this.form.value.password).then(() => {
 			this.router.navigate(['/']);
 		}).catch((err: string) => {
 			if (err === this.loginService.NEW_PASSWORD_REQUIRED) {

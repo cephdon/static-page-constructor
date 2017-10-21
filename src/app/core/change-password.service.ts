@@ -17,16 +17,16 @@ export class ChangePasswordService {
 	constructor(private cognitoService: CognitoService,
 				private uiActivityIndicatorService: UiActivityIndicatorService) { }
 
-	newPassword(email: string, existingPassword: string, newPassword: string): Promise<any> {
+	newPassword(username: string, existingPassword: string, newPassword: string): Promise<any> {
 		let authenticationData = {
-			Username: email,
+			Username: username,
 			Password: existingPassword,
 		};
 
 		let authenticationDetails = new AuthenticationDetails(authenticationData);
 
 		let userData = {
-			Username: email,
+			Username: username,
 			Pool: this.cognitoService.getUserPool()
 		};
 
@@ -42,7 +42,7 @@ export class ChangePasswordService {
 					// authentication.
 
 					// the api doesn't accept this field back
-					delete userAttributes.email_verified;
+					delete userAttributes.username_verified;
 					cognitoUser.completeNewPasswordChallenge(newPassword, requiredAttributes, {
 						onSuccess: function(result) {
 							resolve(userAttributes);

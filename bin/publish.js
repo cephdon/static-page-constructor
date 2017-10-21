@@ -12,7 +12,7 @@ const uploader = client.uploadDir({
 	localDir: 'dist',
 	deleteRemoved: true,
 	s3Params: { 
-		Bucket: 'static-page-constructor' 
+		Bucket: 'static-page-constructor-cmssitestore-1hs5ra8854tlq' 
 	}, 
 });
 

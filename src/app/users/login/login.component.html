@@ -8,16 +8,15 @@
 	<div class="card-body">
 
 		<form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
-			<label for="inputEmail" class="sr-only">
-				Email address
+			<label class="sr-only">
+				Username
 			</label>
 
 			<input
-				[formControlName]="'email'"
-				type="email" 
-				id="inputEmail" 
+				[formControlName]="'username'"
+				type="text" 
 				class="form-control" 
-				placeholder="Email address" 
+				placeholder="Username" 
 				autofocus>
 			
 			<label for="inputPassword" class="sr-only">

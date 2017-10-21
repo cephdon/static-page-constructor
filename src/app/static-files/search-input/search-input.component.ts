@@ -24,4 +24,8 @@ export class SearchInputComponent implements OnInit {
 		});
 	}
 
+	public onSubmit() {
+		return false;
+	}
+
 }

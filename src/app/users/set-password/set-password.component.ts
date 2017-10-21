@@ -26,9 +26,8 @@ export class SetPasswordComponent implements OnInit {
 	ngOnInit() {
 		this.form = new FormGroup({});
 
-		this.form.addControl('email', new FormControl('', [
-			Validators.required, 
-			Validators.email
+		this.form.addControl('username', new FormControl('', [
+			Validators.required,
 		]));
 
 		this.form.addControl('temppassword', new FormControl('', [
@@ -48,7 +47,7 @@ export class SetPasswordComponent implements OnInit {
 		this.submitting = true;
 
 		this.changePasswordService.newPassword(
-			this.form.value.email,
+			this.form.value.username,
 			this.form.value.temppassword,
 			this.form.value.newpassword,
 		).then(() => {
