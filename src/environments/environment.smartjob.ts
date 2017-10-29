@@ -19,13 +19,13 @@ export const environment = {
 
   cognito_identity_endpoint: '',
 
-  staticFilesBucket: 'smartjob-cms-targetsitestore-1na12jhdzms6r',
+  staticFilesBucket: 'smartjob.com.ua',
 
   staticFilesKeyPrefix: 'media',
 
-  siteRoot: 'http://smartjob-cms-targetsitestore-1na12jhdzms6r.s3-website-eu-west-1.amazonaws.com',
+  siteRoot: 'http://smartjob.com.ua.s3-website-eu-west-1.amazonaws.com',
 
-  staticFilesRoot: 'http://smartjob-cms-targetsitestore-1na12jhdzms6r.s3-website-eu-west-1.amazonaws.com',
+  staticFilesRoot: 'http://smartjob.com.ua.s3-website-eu-west-1.amazonaws.com',
 
   s3Endpoint: '',
 };

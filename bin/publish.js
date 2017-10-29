@@ -11,10 +11,9 @@ const client = s3.createClient({
 const uploader = client.uploadDir({
 	localDir: 'dist',
 	deleteRemoved: true,
-	s3Params: { 
-		//Bucket: 'static-page-constructor-cmssitestore-1hs5ra8854tlq'
-		Bucket: 'smartjob-cms-cmssitestore-zzqqctgliu0i'
-	}, 
+	s3Params: {
+		Bucket: 'spc.smartjob.com.ua' //prod
+	},
 });
 
 uploader.on('error', console.log);
