@@ -12,6 +12,18 @@ What I need is a simple, serverless CMS that will generate a static site, so I d
 
 I realize the are a lot of “Build yourself a site in 10 minutes with our drag&drop features” services available, but I don’t want to go “Premium” to use a custom domain, template, stylesheet or whatever.
 
+## How it works
+
+Among the other, Static Page Constructor consists of 3 buckets: definitions, cmssite and targetsite.
+
+**definitions** bucket contains widget configurations and page templates.
+
+**cmssite** hosts CMS site itself.
+
+**targetsite** stores and serves rendered pages.
+
+Whenever you change a page configuration via CMS site, it will trigger an API action to render the page using templates stored on **definitions** bucket into **targetsite** bucket.
+
 ## Getting Started
 
 Checkout "[Getting started](https://github.com/pkorzh/static-page-constructor/wiki/Getting-started)" page on project wiki.
