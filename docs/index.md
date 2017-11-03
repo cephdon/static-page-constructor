@@ -24,7 +24,7 @@ Among the other, Static Page Constructor consists of 3 buckets: definitions, cms
 
 Whenever you change a page configuration via CMS site, it will trigger an API action to render the page using templates stored on **definitions** bucket into **targetsite** bucket.
 
-<img src="https://s3.eu-central-1.amazonaws.com/japanesevedro/1*bFdhu-99LRM6wVrWR6wLQw.png" style="max-width: 100%;">
+<img src="{{ '/assets/images/how-it-works.png'| relative_url }}" style="max-width: 100%;">
 
 ## Getting Started
 
