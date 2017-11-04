@@ -27,7 +27,7 @@ export class WidgetPropsComponent implements OnInit {
 		this.props = this.widgetDefinition.toArray();
 
 		this.props.forEach(prop => {
-			const val = this.widgetConfiguration.props[prop.key] || '';
+			const val = this.widgetConfiguration.props[prop.key] || prop.default || '';
 
 			this.form.addControl(prop.key, prop.required ? new FormControl(val, Validators.required)
 				: new FormControl(val));
