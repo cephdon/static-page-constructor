@@ -17,6 +17,7 @@ import { NarrowComponent } from './layout/narrow/narrow.component';
 import { LoginComponent } from './users/login/login.component';
 import { SetPasswordComponent } from './users/set-password/set-password.component';
 import { LogoutComponent } from './users/logout/logout.component';
+import { ResetPasswordComponent } from './users/reset-password/reset-password.component';
 
 import { OnlyLoggedInUsersGuard } from './shared/only-logged-in-users.guard';
 
@@ -26,6 +27,9 @@ const routes: Routes = [
 	{
 		path: '',
 		component: LayoutComponent,
+		canActivateChild: [
+			OnlyLoggedInUsersGuard,
+		],
 		children: [
 			{
 				path: '',
@@ -39,10 +43,7 @@ const routes: Routes = [
 			{
 				path: 'static-files',
 				loadChildren: 'app/static-files/static-files.module#StaticFilesModule'
-			},
-		],
-		canActivate: [
-			OnlyLoggedInUsersGuard,
+			}
 		]
 	},
 
@@ -62,6 +63,10 @@ const routes: Routes = [
 				path: 'set-password',
 				component: SetPasswordComponent
 			},
+			{
+				path: 'reset-password',
+				component: ResetPasswordComponent
+			}
 		],
 	},
 

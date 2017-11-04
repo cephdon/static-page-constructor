@@ -17,6 +17,22 @@ export class ChangePasswordService {
 	constructor(private cognitoService: CognitoService,
 				private uiActivityIndicatorService: UiActivityIndicatorService) { }
 
+	resetPassword(username: string, code: string, newPassword: string): Promise<any> {
+		let userData = {
+			Username: username,
+			Pool: this.cognitoService.getUserPool()
+		};
+
+		let cognitoUser = new CognitoUser(userData);
+
+		return new Promise((resolve, reject) => {
+			cognitoUser.confirmPassword(code, newPassword ,{
+				onSuccess: resolve,
+				onFailure: reject
+			});
+		});
+	}
+
 	newPassword(username: string, existingPassword: string, newPassword: string): Promise<any> {
 		let authenticationData = {
 			Username: username,

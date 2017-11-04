@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
 
@@ -9,7 +10,8 @@ import { environment } from "../../environments/environment";
 @Injectable()
 export class UserProfileService {
 
-	constructor(private cognitoService: CognitoService) { }
+	constructor(private cognitoService: CognitoService,
+				private router: Router) { }
 
 	public getProfile(): Promise<any> {
 		let cognitoUser = this.cognitoService.getCurrentUser();
@@ -22,11 +24,19 @@ export class UserProfileService {
 					if (err) {
 						reject(err);
 					} else {
-						cognitoUser.getUserAttributes((err, result) => {
-							err ? reject(err) : resolve(result.reduce((acc, attr) => {
-								acc[attr.getName()] = attr.getValue();
-								return acc;
-							}, {}));
+						cognitoUser.getUserAttributes((err: any, result) => {
+							if (err) {
+								if (err.code === 'PasswordResetRequiredException') {
+									this.router.navigate(['/reset-password']);
+								}
+
+								reject(err);
+							} else {
+								resolve(result.reduce((acc, attr) => {
+									acc[attr.getName()] = attr.getValue();
+									return acc;
+								}, {}))
+							}
 						});
 					}
 				});

@@ -1,9 +1,10 @@
 import * as AWS from "aws-sdk/global";
 import * as STS from "aws-sdk/clients/sts";
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { ReplaySubject, Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UiActivityIndicatorService } from './../shared/ui-activity-indicator.service';
 
@@ -17,14 +18,13 @@ import { environment } from "../../environments/environment";
 export class LoginService {
 	public NEW_PASSWORD_REQUIRED: string = 'NEW_PASSWORD_REQUIRED';
 
-	private isAuthenticatedSubject = new BehaviorSubject<boolean>(true);
+	private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
 
 	public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
 	constructor(private cognitoService: CognitoService,
-				private uiActivityIndicatorService: UiActivityIndicatorService) { 
-		this.getAuthentionStatus()
-	}
+				private uiActivityIndicatorService: UiActivityIndicatorService,
+				private router: Router) { }
 
 	public getAuthentionStatus() {
 		return new Promise((resolve, reject) => {
@@ -49,7 +49,6 @@ export class LoginService {
 			return status;
 		}, (err) => {
 			this.isAuthenticatedSubject.next(false);
-			throw err;
 		});
 	}
 
