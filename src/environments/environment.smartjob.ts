@@ -23,9 +23,9 @@ export const environment = {
 
   staticFilesKeyPrefix: 'media',
 
-  siteRoot: 'http://smartjob.com.ua.s3-website-eu-west-1.amazonaws.com',
+  siteRoot: 'https://smartjob.com.ua',
 
-  staticFilesRoot: 'http://smartjob.com.ua.s3-website-eu-west-1.amazonaws.com',
+  staticFilesRoot: 'https://smartjob.com.ua',
 
   s3Endpoint: '',
 };
