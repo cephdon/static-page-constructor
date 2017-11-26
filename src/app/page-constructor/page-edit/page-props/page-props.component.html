@@ -42,6 +42,11 @@
 				[formControlName]="prop.key" 
 				class="form-control"></textarea>
 
+			<textarea
+				*ngSwitchCase="isMarkdown(prop)"
+				[formControlName]="prop.key" 
+				class="form-control"></textarea>
+
 			<input 
 				*ngSwitchCase="isEmail(prop)" 
 				[formControlName]="prop.key"

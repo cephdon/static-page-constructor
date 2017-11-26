@@ -87,4 +87,8 @@ export class PagePropsComponent implements OnInit {
 		return prop.type === 'link';
 	}
 
+	public isMarkdown(prop) {
+		return prop.type === 'markdown';
+	}
+
 }

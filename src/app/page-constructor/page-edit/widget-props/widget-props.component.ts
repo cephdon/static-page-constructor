@@ -54,4 +54,8 @@ export class WidgetPropsComponent implements OnInit {
 		return prop.type === 'link';
 	}
 
+	public isMarkdown(prop) {
+		return prop.type === 'markdown';
+	}
+
 }
